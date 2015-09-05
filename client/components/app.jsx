@@ -1,7 +1,11 @@
 const {
-  RaisedButton
+  RaisedButton,
+    FontIcon,
+    Avatar
+
 } = mui;
 
+const Colors = mui.Styles.Colors;
 const ThemeManager = new mui.Styles.ThemeManager();
 
 App = React.createClass({
@@ -45,6 +49,11 @@ App = React.createClass({
             style={{float: "right"}}
             label="Add 5 points"
             primary={true}/>
+          <FontIcon className="muidocs-icon-action-home" />
+          <Avatar
+              color={Colors.deepOrange300}
+              backgroundColor={Colors.purple500}>C
+          </Avatar>
         </div>
       )
     } else {

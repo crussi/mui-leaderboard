@@ -3,7 +3,9 @@ const {
   ListItem,
   ListDivider,
   Avatar
+
 } = mui;
+
 
 Leaderboard = React.createClass({
   propTypes: {
