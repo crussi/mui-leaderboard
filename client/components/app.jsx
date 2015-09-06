@@ -1,18 +1,25 @@
 const {
   RaisedButton,
     FontIcon,
-    Avatar
+    Avatar,
+    AppBar,
+    LeftNav,
+    MenuItem,
+    IconButton
+
 
 } = mui;
 
 const Colors = mui.Styles.Colors;
 const ThemeManager = new mui.Styles.ThemeManager();
 
+
 App = React.createClass({
   mixins: [ReactMeteorData],
   getInitialState: function () {
     return {
-      selectedPlayerId: null  
+      selectedPlayerId: null,
+      leftNavOpen: false
     };
   },
   childContextTypes: {
@@ -26,13 +33,41 @@ App = React.createClass({
   getMeteorData() {
     return {
       players: Players.find({}, { sort: { score: -1, name: 1 } }).fetch(),
-      selectedPlayer: Players.findOne(this.state.selectedPlayerId)
+      selectedPlayer: Players.findOne(this.state.selectedPlayerId),
+        menuItems : [
+            { route: 'get-started', text: 'Get Started' },
+            { route: 'customization', text: 'Customization' },
+            { route: 'components', text: 'Components' },
+            { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
+            {
+                type: MenuItem.Types.LINK,
+                payload: 'https://github.com/callemall/material-ui',
+                text: 'GitHub'
+            },
+            {
+                text: 'Disabled',
+                disabled: true
+            },
+            {
+                type: MenuItem.Types.LINK,
+                payload: 'https://www.google.com',
+                text: 'Disabled Link',
+                disabled: true
+            }
+        ]
     }
   },
   selectPlayer(playerId) {
     this.setState({
       selectedPlayerId: playerId
     });
+  },
+  leftIconButtonTouchTap(){
+      console.log('open: ' + !this.state.leftNavOpen);
+      this.setState({
+          leftNavOpen: !this.state.leftNavOpen
+      });
+      this.refs.leftNav.toggle();
   },
   addPointsToPlayer(playerId) {
     Players.update(playerId, {$inc: {score: 5}});
@@ -49,22 +84,31 @@ App = React.createClass({
             style={{float: "right"}}
             label="Add 5 points"
             primary={true}/>
-          <FontIcon className="muidocs-icon-action-home" />
-          <Avatar
-              color={Colors.deepOrange300}
-              backgroundColor={Colors.purple500}>C
-          </Avatar>
         </div>
       )
     } else {
       bottomBar = <div className="message">Click a player to select</div>;
     }
 
+    //let iconNameLeft =  this.state.leftNavOpen ? 'zmdi zmdi-close' : 'zmdi zmdi-menu';
+    //let title = this.state.leftNavOpen ? 'Leaderboard opened' : 'Leaderboard closed';
+    //let docked = this.state.leftNavOpen ? true : false;
+    //let appBar = (<AppBar
+    //    title="Leaderboard"
+    //    //iconClassNameLeft={iconNameLeft}
+    //    iconClassNameRight="muidocs-icon-navigation-expand-more"
+    //    onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}
+    //    />)
+
     return (
-      <div className="outer">
-        <div className="logo"></div>
-        <h1 className="title">Leaderboard</h1>
-        <div className="subtitle">Select a scientist to give them points</div>
+      <div>
+        <AppBar
+          title="Leaderboard"
+          iconClassNameRight="muidocs-icon-navigation-expand-more"
+          onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}
+          />
+        <LeftNav ref="leftNav" docked={false} menuItems={this.data.menuItems}
+                 header={<AppBar title="Toduo" showMenuIconButton={false} />} />
         <Leaderboard players={this.data.players}
           selectedPlayerId={this.state.selectedPlayerId}
           onPlayerSelected={this.selectPlayer} />
