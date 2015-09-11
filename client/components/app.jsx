@@ -1,5 +1,5 @@
 const {
-  RaisedButton,
+    RaisedButton,
     FontIcon,
     Avatar,
     AppBar,
@@ -8,112 +8,78 @@ const {
     IconButton
 
 
-} = mui;
+    } = mui;
 
 const Colors = mui.Styles.Colors;
 const ThemeManager = new mui.Styles.ThemeManager();
 
 
 App = React.createClass({
-  mixins: [ReactMeteorData],
-  getInitialState: function () {
-    return {
-      selectedPlayerId: null,
-      leftNavOpen: false
-    };
-  },
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-  getChildContext: function() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  },
-  getMeteorData() {
-    return {
-      players: Players.find({}, { sort: { score: -1, name: 1 } }).fetch(),
-      selectedPlayer: Players.findOne(this.state.selectedPlayerId),
-        menuItems : [
-            { route: 'get-started', text: 'Get Started' },
-            { route: 'customization', text: 'Customization' },
-            { route: 'components', text: 'Components' },
-            { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-            {
-                type: MenuItem.Types.LINK,
-                payload: 'https://github.com/callemall/material-ui',
-                text: 'GitHub'
-            },
-            {
-                text: 'Disabled',
-                disabled: true
-            },
-            {
-                type: MenuItem.Types.LINK,
-                payload: 'https://www.google.com',
-                text: 'Disabled Link',
-                disabled: true
-            }
-        ]
-    }
-  },
-  selectPlayer(playerId) {
-    this.setState({
-      selectedPlayerId: playerId
-    });
-  },
-  leftIconButtonTouchTap(){
-      console.log('open: ' + !this.state.leftNavOpen);
-      this.setState({
-          leftNavOpen: !this.state.leftNavOpen
-      });
-      this.refs.leftNav.toggle();
-  },
-  addPointsToPlayer(playerId) {
-    Players.update(playerId, {$inc: {score: 5}});
-  },
-  render() {
-    let bottomBar;
-    if (this.state.selectedPlayerId) {
-      bottomBar = (
-        <div className="details">
-          <div className="name">{this.data.selectedPlayer.name}</div>
-          <RaisedButton
-            onClick={this.addPointsToPlayer.bind(
+    mixins: [ReactMeteorData],
+    getInitialState: function () {
+        return {
+            selectedPlayerId: null
+        };
+    },
+    childContextTypes: {
+        muiTheme: React.PropTypes.object
+    },
+    getChildContext: function() {
+        return {
+            muiTheme: ThemeManager.getCurrentTheme()
+        };
+    },
+    getMeteorData() {
+        return {
+            players: Players.find({}, { sort: { score: -1, name: 1 } }).fetch(),
+            selectedPlayer: Players.findOne(this.state.selectedPlayerId),
+        }
+    },
+    selectPlayer(playerId) {
+        this.setState({
+            selectedPlayerId: playerId
+        });
+    },
+    addPointsToPlayer(playerId) {
+        Players.update(playerId, {$inc: {score: 5}});
+    },
+    render() {
+        let bottomBar;
+        if (this.state.selectedPlayerId) {
+            bottomBar = (
+                <div className="details">
+                    <div className="name">{this.data.selectedPlayer.name}</div>
+                    <RaisedButton
+                        onClick={this.addPointsToPlayer.bind(
               this, this.state.selectedPlayerId)}
-            style={{float: "right"}}
-            label="Add 5 points"
-            primary={true}/>
-        </div>
-      )
-    } else {
-      bottomBar = <div className="message">Click a player to select</div>;
+                        style={{float: "right"}}
+                        label="Add 5 points"
+                        primary={true}/>
+                </div>
+            )
+        } else {
+            bottomBar = <div className="message">Click a player to select</div>;
+        }
+
+        //let iconNameLeft =  this.state.leftNavOpen ? 'zmdi zmdi-close' : 'zmdi zmdi-menu';
+        //let title = this.state.leftNavOpen ? 'Leaderboard opened' : 'Leaderboard closed';
+        //let docked = this.state.leftNavOpen ? true : false;
+        //let appBar = (<AppBar
+        //    title="Leaderboard"
+        //    //iconClassNameLeft={iconNameLeft}
+        //    iconClassNameRight="muidocs-icon-navigation-expand-more"
+        //    onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}
+        //    />)
+
+        return (
+            <div>
+                <Navigation/>
+
+                <Leaderboard players={this.data.players}
+                             selectedPlayerId={this.state.selectedPlayerId}
+                             onPlayerSelected={this.selectPlayer} />
+                { bottomBar }
+            </div>
+        );
     }
-
-    //let iconNameLeft =  this.state.leftNavOpen ? 'zmdi zmdi-close' : 'zmdi zmdi-menu';
-    //let title = this.state.leftNavOpen ? 'Leaderboard opened' : 'Leaderboard closed';
-    //let docked = this.state.leftNavOpen ? true : false;
-    //let appBar = (<AppBar
-    //    title="Leaderboard"
-    //    //iconClassNameLeft={iconNameLeft}
-    //    iconClassNameRight="muidocs-icon-navigation-expand-more"
-    //    onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}
-    //    />)
-
-    return (
-      <div>
-        <AppBar
-          title="Leaderboard"
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-          onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}
-          />
-        <LeftNav ref="leftNav" docked={false} menuItems={this.data.menuItems}
-                 header={<AppBar title="Toduo" showMenuIconButton={false} />} />
-        <Leaderboard players={this.data.players}
-          selectedPlayerId={this.state.selectedPlayerId}
-          onPlayerSelected={this.selectPlayer} />
-        { bottomBar }
-      </div>
-    )
-  }
 });
