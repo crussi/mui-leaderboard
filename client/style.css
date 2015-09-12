@@ -114,4 +114,9 @@ body {
   body {
     margin: 2em 0 4em 0;
   }
+
+}
+
+.fixed-drawer #content {
+  margin-left: 256px;
 }

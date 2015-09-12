@@ -14,20 +14,13 @@ Navigation = React.createClass({
     mixins: [ReactMeteorData],
     getInitialState: function () {
         return {
-            leftNavOpen: false
+            //leftNavOpen: false
         };
     },
-    changeHandler: function(value) {
-        this.setState({
-            value: value
-        });
-    },
-    leftIconButtonTouchTap(){
-        console.log('open: ' + !this.state.leftNavOpen);
-        this.setState({
-            leftNavOpen: !this.state.leftNavOpen
-        });
-        this.refs.leftNav.toggle();
+    onLeftIconButtonTouchTap: function() {
+        //this.setState({ checked: newState });
+        console.log('parent - child changed');
+        this.refs.sideNav.toggle();
     },
     getMeteorData() {
         return {
@@ -57,10 +50,8 @@ Navigation = React.createClass({
     render() {
         return (
             <div>
-                <HeaderNav/>
-
-                <LeftNav ref="leftNav" docked={false} menuItems={this.data.menuItems}
-                         header={<AppBar title="Toduo" showMenuIconButton={false} />} />
+                <HeaderNav callbackParent={this.onLeftIconButtonTouchTap}/>
+                <SideNav ref="sideNav" docked={true} menuItems={this.data.menuItems} />
             </div>);
     }
 });

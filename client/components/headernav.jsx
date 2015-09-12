@@ -1,13 +1,5 @@
 const {
-    RaisedButton,
-    FontIcon,
-    Avatar,
-    AppBar,
-    LeftNav,
-    MenuItem,
-    IconButton
-
-
+    AppBar
     } = mui;
 
 HeaderNav = React.createClass({
@@ -17,11 +9,7 @@ HeaderNav = React.createClass({
         };
     },
     leftIconButtonTouchTap(){
-        console.log('open: ' + !this.state.leftNavOpen);
-        this.setState({
-            leftNavOpen: !this.state.leftNavOpen
-        });
-        this.refs.leftNav.toggle();
+        this.props.callbackParent(); // hey parent, I've changed!
     },
     render() {
         return (<div>

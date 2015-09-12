@@ -72,13 +72,14 @@ App = React.createClass({
         //    />)
 
         return (
-            <div>
+            <div className="fixed-drawer">
                 <Navigation/>
-
+                <div id='content'>
                 <Leaderboard players={this.data.players}
                              selectedPlayerId={this.state.selectedPlayerId}
                              onPlayerSelected={this.selectPlayer} />
                 { bottomBar }
+                </div>
             </div>
         );
     }
