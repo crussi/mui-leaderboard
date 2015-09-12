@@ -17,8 +17,10 @@ const ThemeManager = new mui.Styles.ThemeManager();
 App = React.createClass({
     mixins: [ReactMeteorData],
     getInitialState: function () {
+        var mq = window.matchMedia("(min-width: 1024px)");
         return {
-            selectedPlayerId: null
+            selectedPlayerId: null,
+            isfixedDrawer: (mq.matches)
         };
     },
     childContextTypes: {
@@ -37,7 +39,7 @@ App = React.createClass({
     },
     selectPlayer(playerId) {
         this.setState({
-            selectedPlayerId: playerId
+            selectedPlayerId: playerId,
         });
     },
     addPointsToPlayer(playerId) {
@@ -70,10 +72,10 @@ App = React.createClass({
         //    iconClassNameRight="muidocs-icon-navigation-expand-more"
         //    onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}
         //    />)
-
+        var drawerClass = this.state.isfixedDrawer ? 'fixed-drawer': '';
         return (
-            <div className="fixed-drawer">
-                <Navigation/>
+            <div className={drawerClass}>
+                <Navigation docked={this.state.isfixedDrawer}/>
                 <div id='content'>
                 <Leaderboard players={this.data.players}
                              selectedPlayerId={this.state.selectedPlayerId}

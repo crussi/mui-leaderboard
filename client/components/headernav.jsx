@@ -13,7 +13,7 @@ HeaderNav = React.createClass({
     },
     render() {
         return (<div>
-            <AppBar
+            <AppBar className="my-header-nav"
                 title="Leaderboard"
                 iconClassNameRight="muidocs-icon-navigation-expand-more"
                 onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}

@@ -51,7 +51,7 @@ Navigation = React.createClass({
         return (
             <div>
                 <HeaderNav callbackParent={this.onLeftIconButtonTouchTap}/>
-                <SideNav ref="sideNav" docked={true} menuItems={this.data.menuItems} />
+                <SideNav ref="sideNav" docked={this.props.docked} menuItems={this.data.menuItems} />
             </div>);
     }
 });

@@ -10,9 +10,9 @@ SideNav = React.createClass({
     },
     render() {
         return (
-            <div>
-                <LeftNav ref="leftNav" docked={this.props.docked} menuItems={this.props.menuItems}
-                         header={<AppBar title="Toduo" showMenuIconButton={false} />} />
+            <div id="sideNav">
+                <LeftNav className="my-side-nav" ref="leftNav" docked={this.props.docked} menuItems={this.props.menuItems}
+                          />
             </div>);
     }
 });
