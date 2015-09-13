@@ -20,19 +20,30 @@ App = React.createClass({
         var mq = window.matchMedia("(min-width: 1024px)");
         return {
             selectedPlayerId: null,
-            isfixedDrawer: (mq.matches)
-        };
+            isfixedDrawer: (mq.matches),
+            isOpen: (mq.matches)
+        }
     },
     handleResize: function(e) {
         //console.log('window resize');
         var mq = window.matchMedia("(min-width: 1024px)");
         if (this.state.isfixedDrawer !== mq.matches) {
             this.setState({isfixedDrawer: (mq.matches)});
-            this.refs.nav.toggleSideNav();
+            //this.refs.nav.toggleSideNav();
         }
-        
-    },
 
+    },
+    onNavigationChange() {
+        //this.setState({isfixedDrawer: (!this.state.isfixedDrawer)});
+        //var mq = window.matchMedia("(min-width: 1024px)");
+        //if (this.state.isfixedDrawer !== mq.matches) {
+        //    this.setState({isfixedDrawer: (mq.matches)});
+        //    //this.refs.nav.toggleSideNav();
+        //}
+        console.log('(1) isOpen: ' + this.state.isOpen)
+        this.setState({isOpen: (!this.state.isOpen)});
+        console.log('(2) isOpen: ' + this.state.isOpen)
+    },
     componentDidMount: function() {
         window.addEventListener('resize', this.handleResize);
     },
@@ -100,10 +111,14 @@ App = React.createClass({
         //    iconClassNameRight="muidocs-icon-navigation-expand-more"
         //    onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}
         //    />)
-        var drawerClass = this.state.isfixedDrawer ? 'fixed-drawer': 'toggle-drawer';
+        let drawerClass = '';
+        if (this.state.isfixedDrawer) {
+            drawerClass = this.state.isOpen ? 'fixed-drawer': 'toggle-drawer';
+        }
+        console.log('drawerClass :' + drawerClass);
         return (
             <div className={drawerClass}>
-                <Navigation ref="nav" docked={this.state.isfixedDrawer}/>
+                <Navigation ref="nav" isfixedDrawer={this.state.isfixedDrawer} callbackParent={this.onNavigationChange}/>
                 <div id='content'>
                 <Leaderboard players={this.data.players}
                              selectedPlayerId={this.state.selectedPlayerId}

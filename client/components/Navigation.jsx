@@ -17,17 +17,21 @@ Navigation = React.createClass({
             //leftNavOpen: false
         };
     },
-    onLeftIconButtonTouchTap: function() {
-        //this.setState({ checked: newState });
-        console.log('parent - child changed');
-        this.refs.sideNav.toggle();
+    //onLeftIconButtonTouchTap: function() {
+    //    //this.setState({ checked: newState });
+    //    console.log('parent - child changed');
+    //    this.refs.sideNav.toggle();
+    //},
+    leftIconButtonTouchTap(){
+        this.props.callbackParent();
+        this.refs.leftNav.toggle();
     },
     toggleSideNav() {
-        console.log('toggleSideNav');
-        this.refs.sideNav.toggle();    },
+        //console.log('toggleSideNav');
+        this.refs.leftNav.toggle();    },
     closeSideNav: function () {
-        console.log('closeSideNav');
-        this.refs.sideNav.close();
+        //console.log('closeSideNav');
+        this.refs.leftNav.close();
     },
     getMeteorData() {
         return {
@@ -56,10 +60,21 @@ Navigation = React.createClass({
     },
     render() {
         //console.log('Navigation docked: ' + this.props.docked);
+        let leftNav;
+        if (this.props.isfixedDrawer) {
+            leftNav = (<LeftNav className="my-side-nav" ref="leftNav" docked={true}  menuItems={this.data.menuItems} />)
+        } else {
+            leftNav = (<LeftNav ref="leftNav" docked={false}  menuItems={this.data.menuItems}
+                                header={<AppBar title="Toduo" showMenuIconButton={false} />} />)
+        }
         return (
             <div>
-                <HeaderNav callbackParent={this.onLeftIconButtonTouchTap}/>
-                <SideNav ref="sideNav" docked={this.props.docked} menuItems={this.data.menuItems} />
+                <AppBar className="my-header-nav"
+                        title="Toduo"
+                        iconClassNameRight="muidocs-icon-navigation-expand-more"
+                        onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}
+                    />
+                {leftNav}
             </div>);
     }
 });

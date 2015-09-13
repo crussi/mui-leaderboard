@@ -121,6 +121,13 @@ body {
   margin-left: 256px;
   margin-top: 64px;
   overflow-y:auto;
+  transform: translate3d(0px, 0, 0);
+}
+.toggle-drawer #content {
+  margin-left: 0px;
+  margin-top: 64px;
+  overflow-y:auto;
+  transform: translate3d(0px, 0, 0);
 }
 .fixed-drawer #sideNav {
   /*margin-top: 64px;*/
@@ -163,6 +170,14 @@ body {
   transform: translate3d(0px, 0, 0);
   overflow: hidden;
 }
+/*.fixed-drawer .my-side-nav > .my-side-nav {*/
+    /*/!*-webkit-transform: translateX(-256px) !important;*!/*/
+    /*/!*-ms-transform: translateX(-256px) !important;*!/*/
+    /*/!*transform: translateX(-256px) !important;*!/*/
+    /*-webkit-transform: translateY(-64px) !important;*/
+    /*-ms-transform: translateY(-64px) !important;*/
+    /*transform: translateY(-64px) !important;*/
+/*}*/
 
 .toggle-drawer .my-side-nav {
   background-color: #fffff;
@@ -170,14 +185,15 @@ body {
   box-sizing: border-box;
   font-family: Roboto, sans-serif;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  /*shadow is causing confusing shadow when nav is hidden???*/
   /*box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23);*/
   border-radius: 0px;
   height: 100%;
   width: 256px;
   position: fixed;
-  z-index: 10;
+  z-index: 8;
   left: 0;
-  top: 0;
+  top: 64px;
   transform: translate3d(0px, 0, 0);
   overflow: hidden;
 }
