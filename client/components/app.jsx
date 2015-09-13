@@ -23,9 +23,37 @@ App = React.createClass({
             isfixedDrawer: (mq.matches)
         };
     },
+    handleResize: function(e) {
+        //console.log('window resize');
+        var mq = window.matchMedia("(min-width: 1024px)");
+        if (this.state.isfixedDrawer !== mq.matches) {
+            this.setState({isfixedDrawer: (mq.matches)});
+            this.refs.nav.toggleSideNav();
+        }
+        
+    },
+
+    componentDidMount: function() {
+        window.addEventListener('resize', this.handleResize);
+    },
+
+    componentWillUnmount: function() {
+        window.removeEventListener('resize', this.handleResize);
+    },
     childContextTypes: {
         muiTheme: React.PropTypes.object
     },
+    //shouldComponentUpdate: function(nextProps, nextState) {
+    //    //return nextProps.id !== this.props.id;
+    //    console.log('shouldComponentUpdate');
+    //    return true;
+    //},
+    //componentWillUpdate: function(nextProps, nextState) {
+    //    console.log('componentWillUpdate');
+    //},
+    //componentDidUpdate: function(prevProps, prevState) {
+    //    console.log('componentDidUpdate');
+    //},
     getChildContext: function() {
         return {
             muiTheme: ThemeManager.getCurrentTheme()
@@ -72,10 +100,10 @@ App = React.createClass({
         //    iconClassNameRight="muidocs-icon-navigation-expand-more"
         //    onLeftIconButtonTouchTap={this.leftIconButtonTouchTap}
         //    />)
-        var drawerClass = this.state.isfixedDrawer ? 'fixed-drawer': '';
+        var drawerClass = this.state.isfixedDrawer ? 'fixed-drawer': 'toggle-drawer';
         return (
             <div className={drawerClass}>
-                <Navigation docked={this.state.isfixedDrawer}/>
+                <Navigation ref="nav" docked={this.state.isfixedDrawer}/>
                 <div id='content'>
                 <Leaderboard players={this.data.players}
                              selectedPlayerId={this.state.selectedPlayerId}

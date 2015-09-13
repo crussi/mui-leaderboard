@@ -22,6 +22,13 @@ Navigation = React.createClass({
         console.log('parent - child changed');
         this.refs.sideNav.toggle();
     },
+    toggleSideNav() {
+        console.log('toggleSideNav');
+        this.refs.sideNav.toggle();    },
+    closeSideNav: function () {
+        console.log('closeSideNav');
+        this.refs.sideNav.close();
+    },
     getMeteorData() {
         return {
             menuItems : [
@@ -48,6 +55,7 @@ Navigation = React.createClass({
         }
     },
     render() {
+        //console.log('Navigation docked: ' + this.props.docked);
         return (
             <div>
                 <HeaderNav callbackParent={this.onLeftIconButtonTouchTap}/>
