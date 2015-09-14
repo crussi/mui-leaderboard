@@ -15,34 +15,38 @@ const ThemeManager = new mui.Styles.ThemeManager();
 
 
 App = React.createClass({
+    mq: window.matchMedia("(min-width: 1024px)"),
     mixins: [ReactMeteorData],
+    _showFixedDrawer(){
+        return this.mq.matches;
+    },
     getInitialState: function () {
-        var mq = window.matchMedia("(min-width: 1024px)");
+        //var mq = window.matchMedia("(min-width: 1024px)");
         return {
             selectedPlayerId: null,
-            isfixedDrawer: (mq.matches),
-            isOpen: (mq.matches)
+            isfixedDrawer: this._showFixedDrawer(),
+            isOpen: this._showFixedDrawer()
         }
     },
     handleResize: function(e) {
-        //console.log('window resize');
-        var mq = window.matchMedia("(min-width: 1024px)");
-        if (this.state.isfixedDrawer !== mq.matches) {
-            this.setState({isfixedDrawer: (mq.matches)});
-            //this.refs.nav.toggleSideNav();
+        //var mq = window.matchMedia("(min-width: 1024px)");
+        if (this.state.isfixedDrawer !== this._showFixedDrawer()) {
+            if (this._showFixedDrawer()) {
+                this.setState({isfixedDrawer: true});
+                //this is necessary due to flaw in leftSideNav
+                this.refs.nav.closeSideNav();
+                this.refs.nav.toggleSideNav();
+                this.setState({isOpen: true});
+            } else {
+                this.setState({isfixedDrawer: false});
+                this.refs.nav.closeSideNav();
+                this.setState({isOpen: false});
+            }
         }
 
     },
-    onNavigationChange() {
-        //this.setState({isfixedDrawer: (!this.state.isfixedDrawer)});
-        //var mq = window.matchMedia("(min-width: 1024px)");
-        //if (this.state.isfixedDrawer !== mq.matches) {
-        //    this.setState({isfixedDrawer: (mq.matches)});
-        //    //this.refs.nav.toggleSideNav();
-        //}
-        console.log('(1) isOpen: ' + this.state.isOpen)
-        this.setState({isOpen: (!this.state.isOpen)});
-        console.log('(2) isOpen: ' + this.state.isOpen)
+    onNavChange(isopen) {
+        this.setState({isOpen: isopen});
     },
     componentDidMount: function() {
         window.addEventListener('resize', this.handleResize);
@@ -115,10 +119,10 @@ App = React.createClass({
         if (this.state.isfixedDrawer) {
             drawerClass = this.state.isOpen ? 'fixed-drawer': 'toggle-drawer';
         }
-        console.log('drawerClass :' + drawerClass);
+        //console.log('drawerClass :' + drawerClass);
         return (
             <div className={drawerClass}>
-                <Navigation ref="nav" isfixedDrawer={this.state.isfixedDrawer} callbackParent={this.onNavigationChange}/>
+                <Navigation ref="nav" isfixedDrawer={this.state.isfixedDrawer} callbackOnNavChange={this.onNavChange}/>
                 <div id='content'>
                 <Leaderboard players={this.data.players}
                              selectedPlayerId={this.state.selectedPlayerId}

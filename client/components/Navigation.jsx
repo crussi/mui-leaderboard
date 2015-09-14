@@ -17,21 +17,32 @@ Navigation = React.createClass({
             //leftNavOpen: false
         };
     },
-    //onLeftIconButtonTouchTap: function() {
-    //    //this.setState({ checked: newState });
-    //    console.log('parent - child changed');
-    //    this.refs.sideNav.toggle();
-    //},
     leftIconButtonTouchTap(){
-        this.props.callbackParent();
+        //console.log('leftIconButtonTouchTap open: ' + !this.refs.leftNav.state.open);
+        this.props.callbackOnNavChange(!this.refs.leftNav.state.open);
         this.refs.leftNav.toggle();
     },
     toggleSideNav() {
         //console.log('toggleSideNav');
-        this.refs.leftNav.toggle();    },
+        this.refs.leftNav.toggle();
+    },
     closeSideNav: function () {
         //console.log('closeSideNav');
         this.refs.leftNav.close();
+    },
+    //onNavOpen(){
+    //    console.log('onNavOpen open: ');
+    //    this.props.callbackOnNavChange(true);
+    //},
+    //onNavClose(){
+    //    console.log('onNavClose open: ');
+    //    this.props.callbackOnNavChange(false);
+    //},
+    onChange() {
+        console.log('Navigation onChange');
+    },
+    navStateIsOpen(){
+        return this.refs.leftNav.state.open;
     },
     getMeteorData() {
         return {
@@ -62,7 +73,8 @@ Navigation = React.createClass({
         //console.log('Navigation docked: ' + this.props.docked);
         let leftNav;
         if (this.props.isfixedDrawer) {
-            leftNav = (<LeftNav className="my-side-nav" ref="leftNav" docked={true}  menuItems={this.data.menuItems} />)
+            leftNav = (<LeftNav className="my-side-nav" ref="leftNav" docked={true}  menuItems={this.data.menuItems}
+                        onNavOpen={this.onNavOpen} onNavClose={this.onNavClose}/>)
         } else {
             leftNav = (<LeftNav ref="leftNav" docked={false}  menuItems={this.data.menuItems}
                                 header={<AppBar title="Toduo" showMenuIconButton={false} />} />)
