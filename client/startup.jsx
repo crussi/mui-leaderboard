@@ -1,4 +1,5 @@
 Meteor.startup(function () {
   injectTapEventPlugin();
-  React.render(<App />, document.getElementById("container"));
+  //React.render(<App />, document.getElementById("container"));
+  React.render(<SidebarApp />, document.getElementById("container"));
 });
