@@ -17,31 +17,7 @@ const styles = {
     },
 };
 
-
-const data = [
-    {name: 'Animal', children: [
-        {name: 'Land', children: [
-            {name: 'Cheetah'},
-            {name: 'Ant'},
-        ]},
-        {name: 'Air', children: [
-            {name: 'Eagle'},
-        ]},
-        {name: 'Water', children: [
-            {name: 'Nessy'},
-        ]},
-    ]},
-    {name: 'Vegetable', children: [
-        {name: 'Broccoli'},
-        {name: 'IE6'},
-    ]},
-    {name: 'Mineral', children: [
-        {name: 'Granite'},
-        {name: 'Uraninite'},
-    ]},
-];
-
-SidebarContent = React.createClass({
+SidebarContentX = React.createClass({
     render() {
         let style = styles.sidebar;
 
@@ -49,9 +25,19 @@ SidebarContent = React.createClass({
             style = update(style, {$merge: this.props.style});
         }
 
+        let links = [];
+
+        for(let i=0; i < 10; i++) {
+            links.push(
+                <a key={i} href='#' style={styles.sidebarLink}>Mock menu item {i}</a>);
+        }
+
         return (
             <MaterialTitlePanel title="Menu" style={style}>
-                <Browser items={data} />
+                <a href='index.html' style={styles.sidebarLink}>Home</a>
+                <a href='responsive_example.html' style={styles.sidebarLink}>Responsive Example</a>
+                <div style={styles.divider} />
+                {links}
             </MaterialTitlePanel>);
     },
 });
