@@ -12,7 +12,7 @@ const styles = {
 SidebarApp = React.createClass({
     getInitialState() {
         return {
-            docked: false,
+            docked: true,
             open: false,
             transitions: true,
             touch: true,
