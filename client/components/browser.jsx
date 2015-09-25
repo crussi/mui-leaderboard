@@ -54,8 +54,9 @@ Browser = React.createClass({
             navtitle = <a className="nav-title" onClick={this.navUp}>{parent.name}</a>;
 
         } else {
-            navicon = <div></div>;
-            navtitle = <p className="nav-title">Home</p>;
+            navicon = <div className="nav-arrow"></div>;
+            navtitle = <span className="nav-title">Home</span>;
+            //navtitle = <a className="nav-title" onClick={this.navUp}>Home</a>;
         }
         return <div className="browser browser-panel">
             <div className="menu-navbar">

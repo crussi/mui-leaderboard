@@ -9,6 +9,9 @@
     cursor: pointer;
     display: block;
 }
+.browser p.nav-title {
+    display: block;
+}
 .browser div.item {
     cursor: pointer;
 }
@@ -37,7 +40,7 @@
 }
 .browser .menu-navbar {
     border-bottom: 1px solid;
-    border-color: #aaaaaa;
+    border-color: #eee;
     text-align: center;
     line-height: 20px;
     height: 40px;
@@ -72,6 +75,7 @@
     margin-right: 10px;
     left: 0;
     padding: 7px 0;
+    color: #bbb;
 }
 
 .browser i.zmdi-chevron-right {
@@ -82,8 +86,9 @@
     display: block;
     margin-top: -10px;
     position: absolute;
-    right: 45px;
+    right: 5px;
     top: 50%;
+    color: #bbb;
 }
 
 /* Generic slider styles */
