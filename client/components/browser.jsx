@@ -9,14 +9,15 @@ Browser = React.createClass({
         console.log('path len: ' + this.state.path.length);
     },
     navUp() {
-        if (this.currNode().isLeafNode) {
-            this.popNode(2);
-        } else {
-            this.popNode(1);
-        }
+        //if (this.currNode().isLeafNode) {
+        //    this.popNode(2);
+        //} else {
+        //    this.popNode(1);
+        //}
+        this.currNode().isLeafNode ? this.popNode(2) : this.popNode(1);
     },
     newNode(index, isLeafNode) {
-        return {'idx':index, 'sel':index, 'isLeafNode': isLeafNode};
+        return {'idx':index, 'isLeafNode': isLeafNode};
     },
     currNode(){
         return this.state.path[this.state.path.length-1];
@@ -27,7 +28,6 @@ Browser = React.createClass({
         } else {
             this.setState({path: this.state.path.slice(0, -1*amt)});
         }
-
     },
     pushNode(node){
         this.setState({path: this.state.path.concat([node])});
@@ -43,7 +43,7 @@ Browser = React.createClass({
         }
     },
     filterItems(){
-        return this.state.path.filter(function(item){return !item.isLeafNode});
+        return this.state.path.filter(function(node){return !node.isLeafNode});
     },
     render() {
         let parent = {};
