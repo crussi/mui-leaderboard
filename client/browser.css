@@ -9,6 +9,9 @@
     cursor: pointer;
     display: block;
 }
+.browser div.item {
+    cursor: pointer;
+}
 
 .browser .items-container {
     max-width: 20rem;

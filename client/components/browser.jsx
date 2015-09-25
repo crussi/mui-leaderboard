@@ -6,50 +6,47 @@ Browser = React.createClass({
         }
     },
     printState(src) {
-        console.log('from ' + src);
-        this.state.path.map(function(item) {
-            console.log(item.idx + ' ' + item.sel + ' ' + item.isroute);
-        });
+        console.log('path len: ' + this.state.path.length);
     },
     navUp() {
-        console.log('navUp');
-        if (this.state.path[this.state.path.length-1].isroute) {
-            this.printState('navUp b4');
-            //this.setState({path: this.state.path.slice(0, -1)},this.printState('navUp remove leaf'));
-            this.setState({path: this.state.path.pop()},this.printState('navUp remove leaf'));
+        if (this.currNode().isLeafNode) {
+            this.popNode(2);
+        } else {
+            this.popNode(1);
         }
-        this.setState({path: this.state.path.slice(0, -1)},this.printState('navUp af'));
-        //this.setState({path: this.state.path.pop()},this.printState('navUp af'));
-        //this.setState({path2: this.state.path2.slice(0, -1)},function(){console.log('af path2: ' + this.state.path2);});
-        //if (this.state.selected.length == this.state.path.length + 1) {
-        //    //console.log('navUp pop selected');
-        //    //console.log('b4 selected: ' + this.state.selected);
-        //    this.setState({selected: this.state.selected.slice(0, -1)},function(){console.log('af selected: ' + this.state.selected);});
-        //}
+    },
+    currNode(){
+        return this.state.path[this.state.path.length-1];
+    },
+    popNode(amt,callback){
+        if (callback) {
+            this.setState({path: this.state.path.slice(0, -1*amt)},callback());
+        } else {
+            this.setState({path: this.state.path.slice(0, -1*amt)});
+        }
 
     },
+    pushNode(node){
+        this.setState({path: this.state.path.concat([node])});
+    },
     navDown(index) {
-        console.log('navDown');
-        //if (this.state.path.length == 0) {
-        //    this.setState({selected: this.state.selected.slice(0, -1)},function(){
-        //        console.log('af selected: ' + this.state.selected);
-        //        this.setState({selected: this.state.selected.concat(index)},function(){console.log('af selected: ' + this.state.selected);})
-        //    });
-        //} else {
-        //    this.setState({selected: this.state.selected.concat(index)},function(){console.log('af selected: ' + this.state.selected);})
-        //}
-        //this.setState({path: this.state.path.concat(index)},function(){console.log('af path: ' + this.state.path);});
-        this.printState('navDown b4');
-        let item = {'idx':index, 'sel':index, 'isroute': false};
-        //console.log('item idx: ' + item.idx + ' sel: ' + item.sel + ' isroute: ' + item.isroute);
-        this.setState({path: this.state.path.concat([item])},this.printState('navDown af'));
+        let node = {'idx':index, 'sel':index, 'isLeafNode': false};
+        this.pushNode(node);
     },
     navRoute(index) {
-        this.printState('navRoute b4');
-        let item = {'idx':index, 'sel':index, 'isroute': true};
+        let item = {'idx':index, 'sel':index, 'isLeafNode': true};
+        if (this.currNode().isLeafNode) {
+            this.setState({path: this.state.path.slice(0, -1)},this.pushRoute(index));
+        } else {
+            this.pushRoute(index);
+        }
+    },
+    pushRoute(index){
+        let item = {'idx':index, 'sel':index, 'isLeafNode': true};
         //console.log('b4 selected: ' + this.state.selected);
         //this.setState({selected: this.state.selected.concat(index)},function() {console.log('af path: ' + this.state.path);console.log('af selected: ' + this.state.selected);});
         this.setState({path: this.state.path.concat([item])},this.printState('navRoute af'));
+
     },
     render() {
         let parent = {};
@@ -57,8 +54,8 @@ Browser = React.createClass({
         //const {path} = this.state;
         //const path = this.state.path;
         //console.log('{path}: ' + {path});
-        const items = this.state.path.filter(function(item){return !item.isroute}).reduce(function(items, key) {
-            console.log('reduce key: ' + key.idx + ' isroute: ' + key.isroute);
+        const items = this.state.path.filter(function(item){return !item.isLeafNode}).reduce(function(items, key) {
+            console.log('reduce key: ' + key.idx + ' isLeafNode: ' + key.isLeafNode);
             parent = items[key.idx];
             return items[key.idx].children;
         }, this.props.items);
@@ -83,7 +80,7 @@ Browser = React.createClass({
                 {navtitle}
             </div>
 
-            <SlideTransition depth={this.state.path.length} className="items-container">
+            <SlideTransition depth={this.state.path.filter(function(item){return !item.isLeafNode}).length} className="items-container">
                 {items.map(function(item, index) {
                     if (item.children) {
                         return <div className="menu-item"><a className="item" onClick={e => this.navDown(index)} key={item.name}>{item.name}</a><i className="zmdi zmdi-chevron-right"></i></div>;
