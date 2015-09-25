@@ -9,15 +9,10 @@ Browser = React.createClass({
         console.log('path len: ' + this.state.path.length);
     },
     navUp() {
-        //if (this.currNode().isLeafNode) {
-        //    this.popNode(2);
-        //} else {
-        //    this.popNode(1);
-        //}
         this.currNode().isLeafNode ? this.popNode(2) : this.popNode(1);
     },
     newNode(index, isLeafNode) {
-        return {'idx':index, 'isLeafNode': isLeafNode};
+        return {'index':index, 'isLeafNode': isLeafNode};
     },
     currNode(){
         return this.state.path[this.state.path.length-1];
@@ -49,8 +44,8 @@ Browser = React.createClass({
         let parent = {};
 
         const items = this.filterItems().reduce(function(items, key) {
-            parent = items[key.idx];
-            return items[key.idx].children;
+            parent = items[key.index];
+            return items[key.index].children;
         }, this.props.items);
 
         let navicon, navtitle;
