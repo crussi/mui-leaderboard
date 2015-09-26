@@ -16,6 +16,7 @@ SlideTransition = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
         let depthChanged = nextProps.depth !== this.props.depth;
         let directionChanged = nextState.direction !== this.state.direction;
+        console.log('depthChanged: ' + depthChanged + ' directionChanged: ' + directionChanged);
         return depthChanged || directionChanged;
     },
     componentWillReceiveProps(newProps) {
@@ -23,6 +24,7 @@ SlideTransition = React.createClass({
         this.setState({direction});
     },
     render() {
+        console.log('slider render');
         const {name, depth} = this.props;
         const outerProps = {
             className: `${name}-outer-wrapper ${this.props.className}`,

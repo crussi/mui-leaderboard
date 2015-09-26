@@ -15,6 +15,7 @@ const styles = {
         width: '100%'
     },
     content: {
+        marginTop: '54px',
         padding: '16px',
     },
 };

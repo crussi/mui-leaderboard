@@ -30,12 +30,16 @@ Browser = React.createClass({
     navDown(index) {
         this.pushNode(this.newNode(index,false));
     },
-    navRoute(index) {
+    navRoute(e, index) {
         if (this.currNode().isLeafNode) {
             this.popNode(1,this.pushNode(this.newNode(index,true)));
         } else {
             this.pushNode(this.newNode(index,true));
         }
+        //console.log(e);
+        //console.log(e.target);
+        //console.log(e.target.dataset.name);
+        ReactLayout.render(SidebarApp, {content: <WelcomeComponent name={e.target.dataset.name} />});
     },
     filterItems(){
         return this.state.path.filter(function(node){return !node.isLeafNode});
@@ -45,9 +49,9 @@ Browser = React.createClass({
 
         const items = this.filterItems().reduce(function(items, key) {
             parent = items[key.index];
-            return items[key.index].children;
-        }, this.props.items);
 
+        return items[key.index].children;
+    }, this.props.items);
         let navicon, navtitle;
         if (this.state.path.length > 0) {
             navicon = <a className="nav-arrow" onClick={this.navUp}><i className="zmdi zmdi-chevron-left"></i></a>;
@@ -69,7 +73,7 @@ Browser = React.createClass({
                     if (item.children) {
                         return <div className="menu-item"><a className="item" onClick={e => this.navDown(index)} key={item.name}>{item.name}</a><i className="zmdi zmdi-chevron-right"></i></div>;
                     } else {
-                        return <div className="item" onClick={e => this.navRoute(index)} key={item.name}>{item.name}</div>;
+                        return <div className="item" onClick={e => this.navRoute(event,index)} data-name={item.name} key={item.name}>{item.name}</div>;
                     }
                 }.bind(this))}
             </SlideTransition>
