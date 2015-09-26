@@ -212,6 +212,8 @@ Sidebar = class Sidebar extends React.Component {
     }
 
     render() {
+        //console.log('sidebar render');
+
         let sidebarStyle = styles.sidebar,
             contentStyle = styles.content,
             overlayStyle = styles.overlay,

@@ -24,13 +24,19 @@ Browser = React.createClass({
             this.setState({path: this.state.path.slice(0, -1*amt)});
         }
     },
-    pushNode(node){
-        this.setState({path: this.state.path.concat([node])});
+    pushNode(node,callback){
+        if (callback) {
+            this.setState({path: this.state.path.concat([node])},callback());
+        } else {
+            this.setState({path: this.state.path.concat([node])});
+        }
+
     },
     navDown(index) {
         this.pushNode(this.newNode(index,false));
     },
     navRoute(e, index) {
+        let name = e.target.dataset.name;
         if (this.currNode().isLeafNode) {
             this.popNode(1,this.pushNode(this.newNode(index,true)));
         } else {
@@ -39,12 +45,30 @@ Browser = React.createClass({
         //console.log(e);
         //console.log(e.target);
         //console.log(e.target.dataset.name);
-        ReactLayout.render(SidebarApp, {content: <WelcomeComponent name={e.target.dataset.name} />});
+        this._goRoute(name);
+    },
+    _goRoute(name){
+        console.log('goroute');
+        ReactLayout.render(SidebarApp, {content: <WelcomeComponent name={name} />});
+        //ReactLayout.render(SidebarApp, {content: <Container content={"goodbye world"} />});
     },
     filterItems(){
         return this.state.path.filter(function(node){return !node.isLeafNode});
     },
+    shouldComponentUpdate: function(nextProps, nextState) {
+        //console.log('nextProps: ' + nextProps);
+        //console.log('nextState: ' + nextState);
+        //let dataChanged = nextProps.data !== this.props.data;
+        //let stateChanged = nextState.path.filter(function(node){return !node.isLeafNode}).length != this.state.path.filter(function(node){return !node.isLeafNode}).length;
+        //console.log('browser this.state.path: ' + this.state.path);
+        //console.log('browser nextState.path: ' + nextState.path);
+        //console.log(' browser dataChanged: ' + dataChanged + ' stateChanged: ' + stateChanged);
+        //return dataChanged || stateChanged;
+        return true;
+    },
     render() {
+        //console.log('browser render');
+
         let parent = {};
 
         const items = this.filterItems().reduce(function(items, key) {

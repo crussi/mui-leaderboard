@@ -29,7 +29,9 @@ MaterialTitlePanel = React.createClass({
         return (
             <div style={rootStyle}>
                 <div style={styles.header}>{this.props.title}</div>
-                <div style={styles.content}>{this.props.children}</div>
+                <div style={styles.content}>
+                    {this.props.children}
+                </div>
             </div>
         );
     }

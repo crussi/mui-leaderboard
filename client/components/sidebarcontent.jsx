@@ -42,7 +42,13 @@ const data = [
 ];
 
 SidebarContent = React.createClass({
+    shouldComponentUpdate: function(nextProps, nextState) {
+        //console.log('nextProps: ' + nextProps);
+        //console.log('nextState: ' + nextState);
+        return true;
+    },
     render() {
+        //console.log('SidebarContent render');
         let style = styles.sidebar;
 
         if (this.props.style) {

@@ -58,6 +58,7 @@ SidebarApp = React.createClass({
     },
 
     render() {
+        //console.log('sidebarapp render');
         let sidebar = <SidebarContent />;
 
         let contentHeader = (
@@ -80,7 +81,7 @@ SidebarApp = React.createClass({
 
         return (
             <Sidebar {...sidebarProps}>
-                <MaterialTitlePanel title={contentHeader}>
+                <MaterialTitlePanel title={contentHeader} >
                     {this.props.content}
                 </MaterialTitlePanel>
             </Sidebar>
