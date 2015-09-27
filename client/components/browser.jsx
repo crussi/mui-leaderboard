@@ -10,6 +10,11 @@ Browser = React.createClass({
     },
     navUp() {
         this.currNode().isLeafNode ? this.popNode(2) : this.popNode(1);
+        this._goRoute('');
+    },
+    navDown(index) {
+        this.pushNode(this.newNode(index,false));
+        this._goRoute('');
     },
     newNode(index, isLeafNode) {
         return {'index':index, 'isLeafNode': isLeafNode};
@@ -32,9 +37,6 @@ Browser = React.createClass({
         }
 
     },
-    navDown(index) {
-        this.pushNode(this.newNode(index,false));
-    },
     navRoute(e, index) {
         let name = e.target.dataset.name;
         if (this.currNode().isLeafNode) {
@@ -48,9 +50,8 @@ Browser = React.createClass({
         this._goRoute(name);
     },
     _goRoute(name){
-        console.log('goroute');
-        ReactLayout.render(SidebarApp, {content: <WelcomeComponent name={name} />});
-        //ReactLayout.render(SidebarApp, {content: <Container content={"goodbye world"} />});
+        //console.log('goroute');
+        FlowRouter.go('/'+name);
     },
     filterItems(){
         return this.state.path.filter(function(node){return !node.isLeafNode});

@@ -1,7 +1,8 @@
 Container = React.createClass({
-    render() {
+    render(){
         return <div>
-            {this.props.content}
+            <h1>Hello, {this.props.name}</h1>
+            {this.props.children}
         </div>
     }
 });
