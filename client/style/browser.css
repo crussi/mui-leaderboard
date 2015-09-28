@@ -20,12 +20,15 @@
     max-width: 20rem;
     /*border: 2px solid #000;*/
     /*border-radius: .25rem;*/
+
 }
 
 .browser .item {
     padding: .55rem .5rem;
     /*background: -webkit-linear-gradient(left, #ededed 0%, #f6f6f6 47%, white 100%);*/
     /*background: linear-gradient(to right, #ededed 0%, #f6f6f6 47%, white 100%);*/
+    font-size: 18px;
+    font-weight: 400;
 }
 
 /*a.item:after {*/
@@ -89,6 +92,12 @@
     right: 5px;
     top: 50%;
     color: #bbb;
+}
+.browser .menu-item > i.zmdi,
+.browser .item > i.zmdi {
+    margin-left: 10px;
+    margin-right: 24px;
+    font-size: 22px;
 }
 
 /* Generic slider styles */

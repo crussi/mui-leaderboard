@@ -3,7 +3,7 @@ const {CSSTransitionGroup} = React.addons;
 SlideTransition = React.createClass({
     propTypes: {
         depth: React.PropTypes.number.isRequired,
-        name: React.PropTypes.string,
+        name: React.PropTypes.string
     },
     getDefaultProps() {
         return {
@@ -11,13 +11,17 @@ SlideTransition = React.createClass({
         };
     },
     getInitialState() {
-        return {direction: 'right'};
+        return {
+            direction: 'right'
+        };
     },
     shouldComponentUpdate: function(nextProps, nextState) {
         let depthChanged = nextProps.depth !== this.props.depth;
         let directionChanged = nextState.direction !== this.state.direction;
-        //console.log(' slider depthChanged: ' + depthChanged + ' directionChanged: ' + directionChanged);
-        return depthChanged || directionChanged;
+        console.log('nextProps.selectedId: ' + nextProps.selectedId);
+        let selectedIdChanged = nextProps.selectedId !== this.props.selectedId;
+        console.log(' slider depthChanged: ' + depthChanged + ' directionChanged: ' + directionChanged + 'selectedIdChanged: ' + selectedIdChanged);
+        return depthChanged || directionChanged || selectedIdChanged;
     },
     componentWillReceiveProps(newProps) {
         const direction = newProps.depth >= this.props.depth ? 'right' : 'left';
