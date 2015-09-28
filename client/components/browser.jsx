@@ -2,35 +2,52 @@
 Browser = React.createClass({
     getInitialState() {
         return {
-            path: [],
-            selectedId: ""
+            path: []
         }
     },
-    printState(src) {
-        console.log('path len: ' + this.state.path.length);
-    },
+    //printState(src) {
+    //    console.log('path len: ' + this.state.path.length);
+    //},
     navUp() {
         this.currNode().isLeafNode ? this.popNode(2) : this.popNode(1);
+        //this.setSelectedId();
         this._goRoute('');
     },
     navDown(index,id) {
-        this.pushNode(this.newNode(index,false));
-        this.setState({selectedId: id});
+        this.pushNode(this.newNode(index, id, false));
+        //this.setState({selectedId: id});
+        //this.setSelectedId(id);
         this._goRoute('');
+        //this.printState('navdown');
     },
-    newNode(index, isLeafNode) {
-        return {'index':index, 'isLeafNode': isLeafNode};
+    newNode(index, id, isLeafNode) {
+        return {'index':index, 'id': id, 'isLeafNode': isLeafNode};
     },
     currNode(){
         return this.state.path[this.state.path.length-1];
     },
-    selectedId(){
-        //return this.currNode() ? this.currNode().index : -1;
-        return this.state.selectedId;
-    },
+    //setSelectedId(id){
+    //    if (!id) {
+    //        if (this.currNode() !== undefined) {
+    //            id = this.currNode().id;
+    //        } else {
+    //            id = '';
+    //        }
+    //    }
+    //    //id = id || this.currNode() ? this.currNode().id : '';
+    //    console.log('setSelectedId: ' + id);
+    //    this.setState({selectedId: id});
+    //},
+    //selectedId(){
+    //    //return this.currNode() ? this.currNode().id : '';
+    //    return this.state.selectedId;
+    //},
+    //isSelected(id) {
+    //    return this.state.path.map(function(node) { return node.id; }).indexOf(id) >= 0;
+    //},
     popNode(amt,callback){
         if (callback) {
-            this.setState({path: this.state.path.slice(0, -1*amt)},callback());
+            this.setState({path: this.state.path.slice(0, -1*amt)},callback);
         } else {
             this.setState({path: this.state.path.slice(0, -1*amt)});
         }
@@ -45,11 +62,12 @@ Browser = React.createClass({
     },
     navRoute(e, index,id) {
         let name = e.target.dataset.name;
-        this.setState({selectedId: id});
+        //this.setState({selectedId: id});
+        //this.setSelectedId(id);
         if (this.currNode() && this.currNode().isLeafNode) {
-            this.popNode(1,this.pushNode(this.newNode(index,true)));
+            this.popNode(1,this.pushNode(this.newNode(index, id, true)));
         } else {
-            this.pushNode(this.newNode(index,true));
+            this.pushNode(this.newNode(index, id, true));
         }
         //console.log(e);
         //console.log(e.target);
@@ -60,9 +78,9 @@ Browser = React.createClass({
         //console.log('goroute');
         //FlowRouter.go('/'+name);
     },
-    filterItems(){
-        return this.state.path.filter(function(node){return !node.isLeafNode});
-    },
+    //filterItems(){
+    //    return this.state.path.filter(function(node){return !node.isLeafNode});
+    //},
     shouldComponentUpdate: function(nextProps, nextState) {
         //console.log('nextProps: ' + nextProps);
         //console.log('nextState: ' + nextState);
@@ -75,11 +93,12 @@ Browser = React.createClass({
         return true;
     },
     render() {
-        //console.log('browser render');
-
+        console.log('browser render');
+        let filteredItems = this.state.path.filter(function(node){return !node.isLeafNode});
+        let selectedId = this.state.path.length > 0 ? this.state.path[this.state.path.length-1].id : '';
         let parent = {};
 
-        const items = this.filterItems().reduce(function(items, key) {
+        const items = filteredItems.reduce(function(items, key) {
             parent = items[key.index];
             return items[key.index].children;
         }, this.props.items);
@@ -103,10 +122,10 @@ Browser = React.createClass({
                 {navtitle}
             </div>
 
-            <SlideTransition selectedId={this.selectedId()} depth={this.filterItems().length} className="items-container">
+            <SlideTransition selectedId={selectedId} depth={filteredItems.length} className="items-container">
                 {items.map(function(item, index) {
-                    let isSelected = this.selectedId() == item.id;
-                    console.log("isSelected: " + isSelected);
+                    let isSelected =    selectedId == item.id;
+                    //console.log("isSelected: " + isSelected);
                     let color = ' color-' + item.color + '-500';
                     let iconClass = "zmdi zmdi-" + item.icon + color;
                     let itemClass = !isSelected ? "item" : "item" + color;
