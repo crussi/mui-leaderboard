@@ -2,7 +2,8 @@
 Browser = React.createClass({
     getInitialState() {
         return {
-            path: []
+            path: [],
+            selectedId: ''
         }
     },
     //printState(src) {
@@ -10,15 +11,24 @@ Browser = React.createClass({
     //},
     navUp() {
         this.currNode().isLeafNode ? this.popNode(2) : this.popNode(1);
-        //this.setSelectedId();
-        this._goRoute('');
+        //this._goRoute('');
     },
     navDown(index,id) {
+        console.log('navDown id: ' + id);
         this.pushNode(this.newNode(index, id, false));
-        //this.setState({selectedId: id});
-        //this.setSelectedId(id);
-        this._goRoute('');
-        //this.printState('navdown');
+        console.log('selectedId: ' + this.state.selectedId);
+        //this._goRoute('');
+    },
+    navRoute(e, index,id) {
+        console.log('navRoute id: ' + id);
+        let name = e.target.dataset.name;
+        if (this.currNode() && this.currNode().isLeafNode) {
+            this.popNode(1);
+        }
+        this.pushNode(this.newNode(index, id, true));
+
+        //this._goRoute(name);
+        console.log('selectedId: ' + this.state.selectedId);
     },
     newNode(index, id, isLeafNode) {
         return {'index':index, 'id': id, 'isLeafNode': isLeafNode};
@@ -26,54 +36,21 @@ Browser = React.createClass({
     currNode(){
         return this.state.path[this.state.path.length-1];
     },
-    //setSelectedId(id){
-    //    if (!id) {
-    //        if (this.currNode() !== undefined) {
-    //            id = this.currNode().id;
-    //        } else {
-    //            id = '';
-    //        }
-    //    }
-    //    //id = id || this.currNode() ? this.currNode().id : '';
-    //    console.log('setSelectedId: ' + id);
-    //    this.setState({selectedId: id});
-    //},
-    //selectedId(){
-    //    //return this.currNode() ? this.currNode().id : '';
-    //    return this.state.selectedId;
-    //},
-    //isSelected(id) {
-    //    return this.state.path.map(function(node) { return node.id; }).indexOf(id) >= 0;
-    //},
     popNode(amt,callback){
-        if (callback) {
-            this.setState({path: this.state.path.slice(0, -1*amt)},callback);
-        } else {
-            this.setState({path: this.state.path.slice(0, -1*amt)});
-        }
+        //let fun = function(){
+        //    if (callback) { callback();}
+        //    let id = this.currNode() ? this.currNode().id : '';
+        //    console.log('pop set selectedId to id: ' + id);
+        //    this.setState({selectedId: id},function(){console.log('pop selectedId: ' + this.state.selectedId);});
+        //}
+        //this.setState({path: this.state.path.slice(0, -1*amt)},fun);
+        this.setState({path: this.state.path.slice(0, -1*amt)});
     },
-    pushNode(node,callback){
-        if (callback) {
-            this.setState({path: this.state.path.concat([node])},callback());
-        } else {
-            this.setState({path: this.state.path.concat([node])});
-        }
+    pushNode(node){
+        this.setState({path: this.state.path.concat([node])});
+        this.setState({selectedId: node.id});
+    },
 
-    },
-    navRoute(e, index,id) {
-        let name = e.target.dataset.name;
-        //this.setState({selectedId: id});
-        //this.setSelectedId(id);
-        if (this.currNode() && this.currNode().isLeafNode) {
-            this.popNode(1,this.pushNode(this.newNode(index, id, true)));
-        } else {
-            this.pushNode(this.newNode(index, id, true));
-        }
-        //console.log(e);
-        //console.log(e.target);
-        //console.log(e.target.dataset.name);
-        this._goRoute(name);
-    },
     _goRoute(name){
         //console.log('goroute');
         //FlowRouter.go('/'+name);
@@ -93,9 +70,10 @@ Browser = React.createClass({
         return true;
     },
     render() {
-        console.log('browser render');
+        //console.log('browser render');
         let filteredItems = this.state.path.filter(function(node){return !node.isLeafNode});
         let selectedId = this.state.path.length > 0 ? this.state.path[this.state.path.length-1].id : '';
+        console.log('render selectedId: ' + selectedId);
         let parent = {};
 
         const items = filteredItems.reduce(function(items, key) {
@@ -124,7 +102,7 @@ Browser = React.createClass({
 
             <SlideTransition selectedId={selectedId} depth={filteredItems.length} className="items-container">
                 {items.map(function(item, index) {
-                    let isSelected =    selectedId == item.id;
+                    let isSelected = selectedId == item.id;
                     //console.log("isSelected: " + isSelected);
                     let color = ' color-' + item.color + '-500';
                     let iconClass = "zmdi zmdi-" + item.icon + color;
