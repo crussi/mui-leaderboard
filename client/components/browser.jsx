@@ -20,8 +20,6 @@ Browser = React.createClass({
         }, this.props.items);
 
         let navicon, navtitle;
-//console.log('path.length: ' + path.length);
-//console.log('items.length: ' + items.length);
         if (path.length > 0) {
             navicon = <a className="nav-arrow" onClick={this.navUp}><i className="zmdi zmdi-chevron-left"></i></a>;
             navtitle = <a className="nav-title" onClick={this.navUp}>{parent.name}</a>;
@@ -41,13 +39,7 @@ Browser = React.createClass({
 
             <SlideTransition depth={path.length} className="items-container">
                 {items.map(function(item, index) {
-                    let color = ' color-' + item.color + '-500';
-                    let iconClass = "zmdi zmdi-" + item.icon + color;
-                    if (item.children) {
-                        return <div className="menu-item"><a className="item" onClick={e => this.navDown(index)} key={item.name}><i className={iconClass}></i>{item.name}</a><i className="zmdi zmdi-chevron-right"></i></div>;
-                    } else {
-                        return <div className="item" key={item.name}><i className={iconClass}></i>{item.name}</div>;
-                    }
+                    return <BrowserItem item={item} index={index} callbackNavDown={this.navDown}></BrowserItem>
                 }.bind(this))}
             </SlideTransition>
 
