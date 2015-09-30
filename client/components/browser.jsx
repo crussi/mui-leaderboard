@@ -2,14 +2,19 @@
 Browser = React.createClass({
     getInitialState() {
         return {
-            path: []
+            path: [],
+            selectedId: ''
         }
     },
     navUp() {
         this.setState({path: this.state.path.slice(0, -1)})
     },
-    navDown(index) {
-        this.setState({path: this.state.path.concat(index)})
+    navDown(item,index) {
+        console.log('browser navDown id: ' + item.id);
+        if (item.children) {
+            this.setState({path: this.state.path.concat(index)});
+        }
+        this.setState({selectedId: item.id});
     },
     render() {
         const {path} = this.state;
@@ -37,9 +42,9 @@ Browser = React.createClass({
             </div>
 
 
-            <SlideTransition depth={path.length} className="items-container">
+            <SlideTransition depth={path.length} selectedId={this.state.selectedId} className="items-container">
                 {items.map(function(item, index) {
-                    return <BrowserItem item={item} index={index} callbackNavDown={this.navDown}></BrowserItem>
+                    return <BrowserItem item={item} index={index} selectedId={this.state.selectedId} callbackNavDown={this.navDown}></BrowserItem>
                 }.bind(this))}
             </SlideTransition>
 

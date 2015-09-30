@@ -6,8 +6,9 @@ BrowserItem = React.createClass({
             isSelected: false
         }
     },
-    navDown(index) {
-        this.props.callbackParent(newState);
+    navDown(item,index) {
+        console.log('browseritem navDown id: ' + item.id);
+        this.props.callbackNavDown(item,index);
     },
     render() {
         console.log('BrowserItem render');
@@ -16,14 +17,14 @@ BrowserItem = React.createClass({
         console.log('item.name: ' + item.name);
         let color = ' color-' + item.color + '-500';
         let iconClass = "zmdi zmdi-" + item.icon + color;
-        //let isSelected = index == path[path.length-1];
-        let itemClass = "item "; //+ (isSelected ? color : "");
+        let isSelected = item.id == this.props.selectedId;
+        let itemClass = "item " + (isSelected ? color : "");
         console.log('itemClass: ' + itemClass);
 
         if (item.children) {
-            return <div className="menu-item"><a className={itemClass} onClick={e => this.navDown(index)} key={item.name}><i className={iconClass}></i>{item.name}</a><i className="zmdi zmdi-chevron-right"></i></div>;
+            return <div className="menu-item"><a className={itemClass} onClick={e => this.navDown(item,index)} key={item.name}><i className={iconClass}></i>{item.name}</a><i className="zmdi zmdi-chevron-right"></i></div>;
         } else {
-            return <div className={itemClass} key={item.name}><i className={iconClass}></i>{item.name}</div>;
+            return <div className={itemClass} onClick={e => this.navDown(item,index)} key={item.name}><i className={iconClass}></i>{item.name}</div>;
         }
     }
 });

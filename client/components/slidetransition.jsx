@@ -20,9 +20,9 @@ SlideTransition = React.createClass({
         let directionChanged = nextState.direction !== this.state.direction;
         //console.log('this.props.selectedId: ' + this.props.selectedId + ' nextProps.selectedId: ' + nextProps.selectedId);
         let selectedIdChanged = nextProps.selectedId !== this.props.selectedId;
-        //console.log(' slider depthChanged: ' + depthChanged + ' directionChanged: ' + directionChanged + ' selectedIdChanged: ' + selectedIdChanged);
-        //return depthChanged || directionChanged || selectedIdChanged;
-        return true;
+        console.log(' slider depthChanged: ' + depthChanged + ' directionChanged: ' + directionChanged + ' selectedIdChanged: ' + selectedIdChanged);
+        return depthChanged || directionChanged || selectedIdChanged;
+        //return true;
     },
     componentWillReceiveProps(newProps) {
         const direction = newProps.depth >= this.props.depth ? 'right' : 'left';
