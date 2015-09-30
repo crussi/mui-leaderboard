@@ -10,65 +10,94 @@ Browser = React.createClass({
     //    console.log('path len: ' + this.state.path.length);
     //},
     navUp() {
-        this.currNode().isLeafNode ? this.popNode(2) : this.popNode(1);
-        //this._goRoute('');
-    },
-    navDown(index,id) {
-        console.log('navDown id: ' + id);
-        this.pushNode(this.newNode(index, id, false));
-        console.log('selectedId: ' + this.state.selectedId);
-        //this._goRoute('');
-    },
-    navRoute(e, index,id) {
-        console.log('navRoute id: ' + id);
-        let name = e.target.dataset.name;
-        if (this.currNode() && this.currNode().isLeafNode) {
-            this.popNode(1);
+        for (let i = 0; i < this.state.path.length; i++) {
+            console.log('navUp b4 path i: ' + i + ' = ' + this.state.path[i].name);
         }
-        this.pushNode(this.newNode(index, id, true));
+        let fun = function(){
+            let id = this.currNode() ? this.currNode().id : '';
+            console.log('navUp setState id: ' + id);
+            for (let i = 0; i < this.state.path.length; i++) {
+                console.log('navUp af path i: ' + i + ' = ' + this.state.path[i].name);
+            }
+        };
+        //this.currNode().isLeafNode ? this.popNode(2) : this.popNode(1);
+        if (this.currNode().isLeafNode) {
+            console.log('navUp isLeafNode');
+            this.setState({path: this.state.path.slice(0, -2)},fun);
+        } else {
+            console.log('navUp isLeafNode');
+            this.setState({path: this.state.path.slice(0, -1)},fun);
+        }
+        //this._goRoute('');
 
-        //this._goRoute(name);
-        console.log('selectedId: ' + this.state.selectedId);
+
+        //this.setState({selectedId: id});
     },
-    newNode(index, id, isLeafNode) {
-        return {'index':index, 'id': id, 'isLeafNode': isLeafNode};
+    navDown(index,item,isleaf) {
+        //console.log('navDown id: ' + id);
+        for (let i = 0; i < this.state.path.length; i++) {
+            console.log('pop b4 path i: ' + i + ' = ' + this.state.path[i].name);
+        }
+        let fun = function(){
+            let id = this.currNode() ? this.currNode().id : '';
+            console.log('popNode setState id: ' + id);
+            for (let i = 0; i < this.state.path.length; i++) {
+                console.log('pop af path i: ' + i + ' = ' + this.state.path[i].name);
+            }
+        };
+        if (isleaf && this.currNode() && this.currNode().isLeafNode) {
+            console.log('isleaf pop ...' + item.name);
+            this.setState({path: this.state.path.slice(0, -1)},fun);
+            this.pushNode(this.newNode(index, item.id, item.name, isleaf));
+            this.setState({selectedId: item.id});
+        } else {
+            this.pushNode(this.newNode(index, item.id, item.name, isleaf));
+            this.setState({selectedId: item.id});
+        }
+
+        //console.log('selectedId: ' + this.state.selectedId);
+        //this._goRoute('');
+    },
+    //navRoute(e, index,id,name) {
+    //    //console.log('navRoute id: ' + id);
+    //    //let name = e.target.dataset.name;
+    //    if (this.currNode() && this.currNode().isLeafNode) {
+    //        this.popNode(1);
+    //    }
+    //    this.pushNode(this.newNode(index, id, name, true));
+    //    this.setState({selectedId: id});
+    //    //this._goRoute(name);
+    //    //console.log('selectedId: ' + this.state.selectedId);
+    //},
+    newNode(index, id, name, isLeafNode) {
+        return {'index':index, 'id': id, 'name': name, 'isLeafNode': isLeafNode};
     },
     currNode(){
         return this.state.path[this.state.path.length-1];
     },
     popNode(amt,callback){
-        //let fun = function(){
-        //    if (callback) { callback();}
-        //    let id = this.currNode() ? this.currNode().id : '';
-        //    console.log('pop set selectedId to id: ' + id);
-        //    this.setState({selectedId: id},function(){console.log('pop selectedId: ' + this.state.selectedId);});
-        //}
-        //this.setState({path: this.state.path.slice(0, -1*amt)},fun);
-        this.setState({path: this.state.path.slice(0, -1*amt)});
+        for (let i = 0; i < this.state.path.length; i++) {
+            console.log('pop b4 path i: ' + i + ' = ' + this.state.path[i].name);
+        }
+        let fun = function(){
+            let id = this.currNode() ? this.currNode().id : '';
+            console.log('popNode setState id: ' + id);
+            for (let i = 0; i < this.state.path.length; i++) {
+                console.log('pop af path i: ' + i + ' = ' + this.state.path[i].name);
+            }
+        };
+        this.setState({path: this.state.path.slice(0, -1)},fun);
     },
     pushNode(node){
         this.setState({path: this.state.path.concat([node])});
-        this.setState({selectedId: node.id});
+        //this.setState({selectedId: node.id});
     },
 
     _goRoute(name){
         //console.log('goroute');
         //FlowRouter.go('/'+name);
     },
-    //filterItems(){
-    //    return this.state.path.filter(function(node){return !node.isLeafNode});
-    //},
-    shouldComponentUpdate: function(nextProps, nextState) {
-        //console.log('nextProps: ' + nextProps);
-        //console.log('nextState: ' + nextState);
-        //let dataChanged = nextProps.data !== this.props.data;
-        //let stateChanged = nextState.path.filter(function(node){return !node.isLeafNode}).length != this.state.path.filter(function(node){return !node.isLeafNode}).length;
-        //console.log('browser this.state.path: ' + this.state.path);
-        //console.log('browser nextState.path: ' + nextState.path);
-        //console.log(' browser dataChanged: ' + dataChanged + ' stateChanged: ' + stateChanged);
-        //return dataChanged || stateChanged;
-        return true;
-    },
+
     render() {
         //console.log('browser render');
         let filteredItems = this.state.path.filter(function(node){return !node.isLeafNode});
@@ -84,7 +113,7 @@ Browser = React.createClass({
 
         let navicon, navtitle;
 
-        if (this.state.path.length > 0) {
+        if (filteredItems.length > 0) {
             navicon = <a className="nav-arrow" onClick={this.navUp}><i className="zmdi zmdi-chevron-left"></i></a>;
             navtitle = <a className="nav-title" onClick={this.navUp}>{parent.name}</a>;
 
@@ -108,13 +137,14 @@ Browser = React.createClass({
                     let iconClass = "zmdi zmdi-" + item.icon + color;
                     let itemClass = !isSelected ? "item" : "item" + color;
                     if (isSelected) {
-                        console.log("name: " + item.name + " iconClass: " + iconClass + " itemClass: " + itemClass);
+                        //console.log("name: " + item.name + " iconClass: " + iconClass + " itemClass: " + itemClass);
+                        console.log("name: " + item.name);
                     }
                     if (item.children) {
 
-                        return <div className="menu-item"><a className={itemClass} onClick={e => this.navDown(index,item.id)} key={item.name}><i className={iconClass}></i>{item.name}<i className="zmdi zmdi-chevron-right"></i></a></div>;
+                        return <div className="menu-item"><a className={itemClass} onClick={e => this.navDown(index,item,false)} key={item.name}><i className={iconClass}></i>{item.name}<i className="zmdi zmdi-chevron-right"></i></a></div>;
                     } else {
-                        return <div className={itemClass} onClick={e => this.navRoute(event,index,item.id)} data-name={item.name} key={item.name}><i className={iconClass}></i>{item.name}</div>;
+                        return <div className={itemClass} onClick={e => this.navDown(index,item,true)} data-name={item.name} key={item.name}><i className={iconClass}></i>{item.name}</div>;
                     }
                 }.bind(this))}
             </SlideTransition>
