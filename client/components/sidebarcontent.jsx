@@ -24,35 +24,35 @@ const data = [
         name: "Inbox",
         icon: "inbox",
         color: "blue",
-        route: ""
+        route: "/inbox"
     },
     {
         id:"I10ifHO0PEGrSxI_nNi-ag",
         name: "Next",
         icon: "check-square",
         color: "green",
-        route: "",
+        route: "/next",
         children: [
             {
                 id:"bFolGPm9ikShWzx76mq0GQ",
                 name: "Today",
                 icon: "calendar",
                 color: "green",
-                route: ""
+                route: "/next/today"
             },
             {
                 id:"_dy3uCTWF0qsWqELiinqFg",
                 name: "This Week",
                 icon: "calendar-note",
                 color: "green",
-                route: ""
+                route: "/next/thisweek"
             },
             {
                 id:"w7mtxGN6Vkycw0pzuc7nHw",
                 name: "Soon",
                 icon: "calendar-check",
                 color: "green",
-                route: ""
+                route: "/next/soon"
             }
         ]
     },
@@ -61,35 +61,35 @@ const data = [
         name: "Focus",
         icon: "star",
         color: "red",
-        route: ""
+        route: "/focus"
     },
     {
         id:"qvyAi6BwzUefiROWuco38g",
         name: "Waiting for",
         icon: "account-box",
         color: "orange",
-        route: ""
+        route: "/waitingfor"
     },
     {
         id:"ELm2BGNyHkCGsEzL5hp_JQ",
         name: "Scheduled",
         icon: "time",
         color: "cyan",
-        route: "",
+        route: "/scheduled",
         children: [
             {
                 id:"kvIGBCUWZkuzp86JaHye4A",
                 name: "Calendar",
                 icon: "calendar",
                 color: "cyan",
-                route: ""
+                route: "/scheduled/calendar"
             },
             {
                 id:"XueTfO9q9EuzgzsMcjI1oA",
                 name: "Reminders",
                 icon: "notifications",
                 color: "cyan",
-                route: ""
+                route: "/scheduled/reminders"
             }
         ]
     },
@@ -98,35 +98,35 @@ const data = [
         name: "Someday",
         icon: "pause",
         color: "purple",
-        route: ""
+        route: "/someday"
     },
     {
         id:"UeWFiTObrEGrl88O9woGtA",
         name: "Projects",
         icon: "assignment-o",
         color: "pink",
-        route: "",
+        route: "/projects",
         children: [
             {
                 id:"7EHOtAYARkG0c43qsDH5cQ",
                 name: "Project 1",
                 icon: "assignment",
                 color: "pink",
-                route: ""
+                route: "/projects/1"
             },
             {
                 id:"0dCP51BWpEuPWDLiWVKQOQ",
                 name: "Project 2",
                 icon: "assignment",
                 color: "pink",
-                route: ""
+                route: "/projects/2"
             },
             {
                 id:"C_xUMSgdpEuS4Yt1XlO-XQ",
                 name: "Project 3",
                 icon: "assignment",
                 color: "pink",
-                route: ""
+                route: "/projects/3"
             },
         ]
     },
@@ -135,42 +135,42 @@ const data = [
         name: "Review",
         icon: "local-cafe",
         color: "brown",
-        route: ""
+        route: "/review"
     },
     {
         id:"ZABTfpmKh0KSbeN7QwKd3Q",
         name: "Lists",
         icon: "view-list-alt",
         color: "deep-purple",
-        route: "",
+        route: "/lists",
         children: [
             {
                 id:"uP4uSZ3m9U_bDloeUpDcYw",
                 name: "Checklists",
                 icon: "view-list-alt",
                 color: "deep-purple",
-                route: ""
+                route: "/lists/checklists"
             },
             {
                 id:"f4NkhuA_PkGyRi7yZIx0Qg",
                 name: "Reference",
                 icon: "book",
                 color: "deep-purple",
-                route: ""
+                route: "/lists/reference"
             },
             {
                 id:"3Jrjgc86U0m6afkizxB2SA",
                 name: "Done",
                 icon: "archive",
                 color: "deep-purple",
-                route: ""
+                route: "/lists/done"
             },
             {
                 id:"pSzvcNe3T0q5fwcB2kDUtQ",
                 name: "Trash",
                 icon: "delete",
                 color: "deep-purple",
-                route: ""
+                route: "/lists/trash"
             }
         ]
     },
@@ -179,35 +179,35 @@ const data = [
         name: "Contexts",
         icon: "pin",
         color: "teal",
-        route: "",
+        route: "/contexts",
         children: [
             {
                 id:"RFhgTTkk0Ey3kg_xSpwD8w",
                 name: "Roles",
                 icon: "local-offer",
                 color: "teal",
-                route: ""
+                route: "/contexts/roles"
             },
             {
                 id:"QXFQzrUDCUC_kfWP9zSPDg",
                 name: "Contexts ",
                 icon: "pin",
                 color: "teal",
-                route: ""
+                route: "/contexts/contexts"
             },
             {
                 id:"0w0JGgMyX0e0YWm583VwOQ",
                 name: "Flags ",
                 icon: "flag",
                 color: "teal",
-                route: ""
+                route: "/contexts/flags"
             },
             {
                 id:"QcRkScJUWkesxZ3Wn-ZT_Q",
                 name: "Delegates ",
                 icon: "account-box",
                 color: "teal",
-                route: ""
+                route: "/contexts/delegates"
             }
         ]
     },
@@ -216,21 +216,21 @@ const data = [
         name: "Settings",
         icon: "settings",
         color: "indigo",
-        route: "",
+        route: "/settings",
         children: [
             {
                 id:"H-IuJIo9Vkif4JZRKqUd-Q",
                 name: "Profile ",
                 icon: "account-circle",
                 color: "indigo",
-                route: ""
+                route: "/settings/profile"
             },
             {
                 id:"XcWlwKAXUUS-R-GHN6Ugfg",
                 name: "General ",
                 icon: "settings",
                 color: "indigo",
-                route: ""
+                route: "/settings/general"
             }
         ]
     }

@@ -7,22 +7,41 @@ Browser = React.createClass({
         }
     },
     navUp() {
+        if (this.state.selected.length > 0) {
+
+            let item = this.state.selected[this.state.selected.length-2];
+            console.log('navUp item.route: ' + item.route);
+            FlowRouter.go(item.route);
+        }
         this.setState({path: this.state.path.slice(0, -1)});
         this.setState({selected: this.state.selected.slice(0, -1)});
-        //??how set selectedId??
+
+
     },
     navDown(item,index) {
         console.log('browser navDown id: ' + item.id);
         if (item.children) {
             this.setState({path: this.state.path.concat(index)});
-            this.setState({selected: this.state.selected.slice(0,-1).concat(item.id).concat('')})
+            this.setState({selected: this.state.selected.slice(0,-1).concat(item).concat('')});
         } else {
-            this.setState({selected: this.state.selected.slice(0,-1).concat(item.id)})
+            this.setState({selected: this.state.selected.slice(0,-1).concat(item)})
+        }
+        //console.log('route: ' + item.route);
+        if (item.route) {
+
+            FlowRouter.go(item.route);
         }
     },
     render() {
         const {path} = this.state;
-        let selectedId = this.state.selected[this.state.selected.length-1];
+        let selectedId = '';
+        let item = {};
+        if (this.state.selected.length > 0) {
+            item = this.state.selected[this.state.selected.length-1];
+            selectedId = item.id;
+            //FlowRouter.go(item.route);
+        }
+
         let parent = {};
         const items = path.reduce(function(items, key) {
             parent = items[key];
