@@ -1,3 +1,5 @@
+
+console.log("greetings");
 FlowRouter.route('/',{
     subscriptions: function(params) {
         //this.register('menuItems', Meteor.subscribe('menu-items'));
