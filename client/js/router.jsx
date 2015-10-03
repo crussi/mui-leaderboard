@@ -1,16 +1,22 @@
 
-console.log("greetings");
+//window.addEventListener('popstate', function(event)
+//{
+//    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+//});
+
 FlowRouter.route('/',{
     subscriptions: function(params) {
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        console.log("route /");
+
         //if (Meteor.user()) {
         //    //FlowLayout.render('layout-auth', { content: "dashboard"});
         //    renderDashboard();
         //} else {
             //FlowLayout.render('layout-unauth', { header: "headerunauth", content: "content-mktg"});
+
+            //ReactLayout.render(SidebarApp, {content: <Container name={"world"} />, routestate: routestate[Routes.root]});
             ReactLayout.render(SidebarApp, {content: <Container name={"world"} />});
 
         //}
@@ -18,28 +24,12 @@ FlowRouter.route('/',{
     }
 });
 
-FlowRouter.route('/overview',{
-    subscriptions: function(params) {
-        //this.register('menuItems', Meteor.subscribe('menu-items'));
-    },
-    action: function() {
-        console.log("route /");
-        //if (Meteor.user()) {
-        //    //FlowLayout.render('layout-auth', { content: "dashboard"});
-        //    renderDashboard();
-        //} else {
-        //FlowLayout.render('layout-unauth', { header: "headerunauth", content: "content-mktg"});
-        ReactLayout.render(SidebarApp, {content: <Container name={"world"} />});
-
-        //}
-
-    }
-});
 FlowRouter.route('/inbox',{
     subscriptions: function(params) {
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"inbox"} />, routestate: routestate[Routes.inbox]});
         ReactLayout.render(SidebarApp, {content: <Container name={"inbox"} />});
     }
 });
@@ -52,6 +42,7 @@ nextRoutes.route('/',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"next"} />, routestate: routestate[Routes.next]});
         ReactLayout.render(SidebarApp, {content: <Container name={"next"} />});
     }
 });
@@ -60,6 +51,7 @@ nextRoutes.route('/today',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"today"} />, routestate: routestate[Routes.next_today]});
         ReactLayout.render(SidebarApp, {content: <Container name={"today"} />});
     }
 });
@@ -68,6 +60,7 @@ nextRoutes.route('/thisweek',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"thisweek"} />, routestate: routestate[Routes.next_thisweek]});
         ReactLayout.render(SidebarApp, {content: <Container name={"thisweek"} />});
     }
 });
@@ -76,6 +69,7 @@ nextRoutes.route('/soon',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"soon"} />, routestate: routestate[Routes.next_soon]});
         ReactLayout.render(SidebarApp, {content: <Container name={"soon"} />});
     }
 });
@@ -85,6 +79,7 @@ FlowRouter.route('/focus',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"focus"} />, routestate: routestate[Routes.focus]});
         ReactLayout.render(SidebarApp, {content: <Container name={"focus"} />});
     }
 });
@@ -94,15 +89,8 @@ FlowRouter.route('/waitingfor',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"waiting for"} />, routestate: routestate[Routes.waitingfor]});
         ReactLayout.render(SidebarApp, {content: <Container name={"waiting for"} />});
-    }
-});
-FlowRouter.route('/inbox',{
-    subscriptions: function(params) {
-        //this.register('menuItems', Meteor.subscribe('menu-items'));
-    },
-    action: function() {
-        ReactLayout.render(SidebarApp, {content: <Container name={"inbox"} />});
     }
 });
 var scheduledRoutes = FlowRouter.group({
@@ -114,6 +102,7 @@ scheduledRoutes.route('/',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"scheduled"} />, routestate: routestate[Routes.scheduled]});
         ReactLayout.render(SidebarApp, {content: <Container name={"scheduled"} />});
     }
 });
@@ -122,7 +111,8 @@ scheduledRoutes.route('/calendar',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        ReactLayout.render(SidebarApp, {content: <Container name={"calendar"} />});
+        //ReactLayout.render(SidebarApp, {content: <Container name={"calendar"} />});
+        ReactLayout.render(SidebarApp, {content: <Container name={"calendar"} />, routestate: routestate[Routes.scheduled_calendar]});
     }
 });
 scheduledRoutes.route('/reminders',{
@@ -130,6 +120,7 @@ scheduledRoutes.route('/reminders',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"reminders"} />, routestate: routestate[Routes.scheduled_reminders]});
         ReactLayout.render(SidebarApp, {content: <Container name={"reminders"} />});
     }
 });
@@ -138,6 +129,7 @@ FlowRouter.route('/someday',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"someday"} />, routestate: routestate[Routes.someday]});
         ReactLayout.render(SidebarApp, {content: <Container name={"someday"} />});
     }
 });
@@ -150,6 +142,7 @@ projectRoutes.route('/',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"projects"} />, routestate: routestate[Routes.projects]});
         ReactLayout.render(SidebarApp, {content: <Container name={"projects"} />});
     }
 });
@@ -158,6 +151,7 @@ projectRoutes.route('/project/:id',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"project detail"} />, routestate: routestate[Routes.projects_1]});
         ReactLayout.render(SidebarApp, {content: <Container name={"project detail"} />});
     }
 });
@@ -168,6 +162,7 @@ FlowRouter.route('/review',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"review"} />, routestate: routestate[Routes.review]});
         ReactLayout.render(SidebarApp, {content: <Container name={"review"} />});
     }
 });
@@ -181,6 +176,7 @@ listsRoutes.route('/',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"lists"} />, routestate: routestate[Routes.lists]});
         ReactLayout.render(SidebarApp, {content: <Container name={"lists"} />});
     }
 });
@@ -189,6 +185,7 @@ listsRoutes.route('/checklists',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"checklists"} />, routestate: routestate[Routes.lists_checklists]});
         ReactLayout.render(SidebarApp, {content: <Container name={"checklists"} />});
     }
 });
@@ -197,6 +194,7 @@ listsRoutes.route('/reference',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"reference"} />, routestate: routestate[Routes.lists_reference]});
         ReactLayout.render(SidebarApp, {content: <Container name={"reference"} />});
     }
 });
@@ -205,6 +203,7 @@ listsRoutes.route('/done',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"done"} />, routestate: routestate[Routes.lists_done]});
         ReactLayout.render(SidebarApp, {content: <Container name={"done"} />});
     }
 });
@@ -213,6 +212,7 @@ listsRoutes.route('/trash',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"trash"} />, routestate: routestate[Routes.lists_trash]});
         ReactLayout.render(SidebarApp, {content: <Container name={"trash"} />});
     }
 });
@@ -225,6 +225,7 @@ contextsRoutes.route('/',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"contexts"} />, routestate: routestate[Routes.contexts]});
         ReactLayout.render(SidebarApp, {content: <Container name={"contexts"} />});
     }
 });
@@ -233,6 +234,7 @@ contextsRoutes.route('/roles',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"roles"} />, routestate: routestate[Routes.contexts_roles]});
         ReactLayout.render(SidebarApp, {content: <Container name={"roles"} />});
     }
 });
@@ -241,6 +243,7 @@ contextsRoutes.route('/contexts',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"contexts"} />, routestate: routestate[Routes.contexts_contexts]});
         ReactLayout.render(SidebarApp, {content: <Container name={"contexts"} />});
     }
 });
@@ -249,6 +252,7 @@ contextsRoutes.route('/flags',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"flags"} />, routestate: routestate[Routes.contexts_flags]});
         ReactLayout.render(SidebarApp, {content: <Container name={"flags"} />});
     }
 });
@@ -257,6 +261,7 @@ contextsRoutes.route('/delegates',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"delegates"} />, routestate: routestate[Routes.contexts_delegates]});
         ReactLayout.render(SidebarApp, {content: <Container name={"delegates"} />});
     }
 });
@@ -270,6 +275,7 @@ settingsRoutes.route('/',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"settings"} />, routestate: routestate[Routes.settings]});
         ReactLayout.render(SidebarApp, {content: <Container name={"settings"} />});
     }
 });
@@ -278,6 +284,7 @@ settingsRoutes.route('/profile',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"profile"} />, routestate: routestate[Routes.settings_profile]});
         ReactLayout.render(SidebarApp, {content: <Container name={"profile"} />});
     }
 });
@@ -286,6 +293,7 @@ settingsRoutes.route('/general',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
+        //ReactLayout.render(SidebarApp, {content: <Container name={"general settings"} />, routestate: routestate[Routes.settings_general]});
         ReactLayout.render(SidebarApp, {content: <Container name={"general settings"} />});
     }
 });
@@ -293,57 +301,3 @@ settingsRoutes.route('/general',{
 //ReactLayout.render(SidebarApp, {content: x});
 ////ReactLayout.render(SidebarApp, {content: <Container content={"goodbye world"} />});
 
-FlowRouter.route('/Cheetah',{
-    subscriptions: function(params) {
-        //this.register('menuItems', Meteor.subscribe('menu-items'));
-    },
-    action: function() {
-        console.log("route /Cheetah");
-        //if (Meteor.user()) {
-        //    //FlowLayout.render('layout-auth', { content: "dashboard"});
-        //    renderDashboard();
-        //} else {
-        //FlowLayout.render('layout-unauth', { header: "headerunauth", content: "content-mktg"});
-        ReactLayout.render(SidebarApp, {content: <Container name={"Cheetah"}><Cheetah/></Container>});
-
-        //}
-
-    }
-});
-
-FlowRouter.route('/Ant',{
-    subscriptions: function(params) {
-        //this.register('menuItems', Meteor.subscribe('menu-items'));
-    },
-    action: function() {
-        console.log("route /Ant");
-        //if (Meteor.user()) {
-        //    //FlowLayout.render('layout-auth', { content: "dashboard"});
-        //    renderDashboard();
-        //} else {
-        //FlowLayout.render('layout-unauth', { header: "headerunauth", content: "content-mktg"});
-        ReactLayout.render(SidebarApp, {content: <Container name={"Ant"}><Ant/></Container>});
-
-        //}
-
-    }
-});
-
-FlowRouter.route('/Eagle',{
-    subscriptions: function(params) {
-        //this.register('menuItems', Meteor.subscribe('menu-items'));
-    },
-    action: function() {
-        console.log("route /Eagle");
-        //if (Meteor.user()) {
-        //    //FlowLayout.render('layout-auth', { content: "dashboard"});
-        //    renderDashboard();
-        //} else {
-        //FlowLayout.render('layout-unauth', { header: "headerunauth", content: "content-mktg"});
-        ReactLayout.render(SidebarApp, {content: <Container name={"Eagle"}><Eagle/></Container>});
-
-        //}
-
-    }
-});
-"CZ/vx?X/*≥c/vf,a;'dsa;*/"

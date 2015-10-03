@@ -30,10 +30,14 @@ SidebarContent = React.createClass({
         if (this.props.style) {
             style = update(style, {$merge: this.props.style});
         }
-
+        let browserProps = {
+            items: menudata,
+            routestate: routestate
+        }
+//console.log('browserProps: ' + browserProps.initialPath + ' ' + browserProps.initialSelected);
         return (
             <MaterialTitlePanel title="Menu" style={style}>
-                <Browser items={menudata} />
+                <Browser {...browserProps}/>
             </MaterialTitlePanel>);
     },
 });

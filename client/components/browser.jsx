@@ -1,25 +1,55 @@
 
 Browser = React.createClass({
     getInitialState() {
+        //console.log('getInitialState browser');
         return {
             path: [],
-            selected:[]
+            selected: []
         }
+    },
+    componentWillReceiveProps(nextProps){
+    //    console.log('componentWillReceiveProps browser nextProps: ' + nextProps.initialPath + ' - ' + nextProps.initialSelected[0].name);
+    //    this.setState({path: nextProps.initialPath ? nextProps.initialPath : []});
+    //    this.setState({selected: nextProps.initialSelected ? nextProps.initialSelected : []});
+    },
+    componentDidMount: function() {
+        window.addEventListener('popstate', this.handleRouteChange);
+    },
+
+    componentWillUnmount: function() {
+        window.removeEventListener('popstate', this.handleRouteChange);
+    },
+    handleRouteChange(event){
+        //console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+        //console.log(JSON.stringify(event.state)); //state: {"path":"/someday"}
+        //let selected = [];
+        //ary.push('a'); ary.push('b'); ary.push('c');
+        //console.log('ary: ' + ary);
+        let routePath = event.state.path;
+        //console.log('path: ' + routePath);
+        //console.log('routestate: ' + this.props.routestate[routePath]);
+        let routestate = this.props.routestate[routePath];
+        let path = routestate ? routestate[0] : [];
+        let selected = routestate ? routestate[1] : [];
+        //console.log('path: ' + path);
+        //console.log(Object.prototype.toString.call(path));
+        //console.log('selected: ' + selected);
+        //console.log(Object.prototype.toString.call(selected));
+        this.setState({path: path});
+        this.setState({selected: selected});
+
     },
     navUp() {
         if (this.state.selected.length > 0) {
 
             let item = this.state.selected[this.state.selected.length-2];
-            console.log('navUp item.route: ' + item.route);
             FlowRouter.go(item.route);
         }
         this.setState({path: this.state.path.slice(0, -1)});
         this.setState({selected: this.state.selected.slice(0, -1)});
-
-
     },
     navDown(item,index) {
-        console.log('browser navDown id: ' + item.id);
+        //console.log('browser navDown id: ' + item.id);
         if (item.children) {
             this.setState({path: this.state.path.concat(index)});
             this.setState({selected: this.state.selected.slice(0,-1).concat(item).concat('')});
@@ -44,9 +74,13 @@ Browser = React.createClass({
 
         let parent = {};
         const items = path.reduce(function(items, key) {
+            //console.log('inside reduce items: ' + items + ' key: ' + key);
             parent = items[key];
             return items[key].children;
-        }, this.props.items);
+        }, this.props.items) || this.props.items;
+
+        //console.log('items: ' + items);
+        console.log('path: ' + path + 'path.length: ' + path.length);
 
         let navicon, navtitle;
         if (path.length > 0) {

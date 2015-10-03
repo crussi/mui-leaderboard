@@ -1,37 +1,71 @@
+Routes = {
+    root : "/",
+    inbox : "/inbox",
+    next : "/next",
+    next_today : "/next/today",
+    next_thisweek : "/next/thisweek",
+    next_soon : "/next/soon",
+    focus : "/focus",
+    waitingfor : "/waitingfor",
+    scheduled : "/scheduled",
+    scheduled_calendar : "/scheduled/calendar",
+    scheduled_reminders : "/scheduled/reminders",
+    someday : "/someday",
+    projects : "/projects",
+    project_1 : "/project/1",
+    project_2 : "/project/2",
+    project_3 : "/project/3",
+    review : "/review",
+    lists : "/lists",
+    lists_checklists : "/lists/checklists",
+    lists_reference : "/lists/reference",
+    lists_done : "/lists/done",
+    lists_trash : "/lists/trash",
+    contexts : "/contexts",
+    contexts_roles : "/contexts/roles",
+    contexts_contexts : "/contexts/contexts",
+    contexts_flags : "/contexts/flags",
+    contexts_delegates : "/contexts/delegates",
+    settings : "/settings",
+    settings_profile : "/settings/profile",
+    settings_general : "/settings/general"
+}
+
+
 const inbox = {
     id: "FDDp1ru10UCxl2Xnv2NT2Q",
     name: "Inbox",
     icon: "inbox",
     color: "blue",
-    route: "/inbox"
+    route: Routes.inbox
 };
 const today = {
     id: "bFolGPm9ikShWzx76mq0GQ",
     name: "Today",
     icon: "calendar",
     color: "green",
-    route: "/next/today"
+    route: Routes.next_today
 };
 const thisweek = {
     id: "_dy3uCTWF0qsWqELiinqFg",
     name: "This Week",
     icon: "calendar-note",
     color: "green",
-    route: "/next/thisweek"
+    route: Routes.next_thisweek
 };
 const soon = {
     id: "w7mtxGN6Vkycw0pzuc7nHw",
     name: "Soon",
     icon: "calendar-check",
     color: "green",
-    route: "/next/soon"
+    route: Routes.next_soon
 };
 const next = {
     id: "I10ifHO0PEGrSxI_nNi-ag",
     name: "Next",
     icon: "check-square",
     color: "green",
-    route: "/next",
+    route: Routes.next,
     children: [today,thisweek,soon]
 };
 const focus = {
@@ -39,35 +73,35 @@ const focus = {
     name: "Focus",
     icon: "star",
     color: "red",
-    route: "/focus"
+    route: Routes.focus
 };
 const waitingfor = {
     id: "qvyAi6BwzUefiROWuco38g",
     name: "Waiting for",
     icon: "account-box",
     color: "orange",
-    route: "/waitingfor"
+    route: Routes.waitingfor
 };
 const calendar = {
     id: "kvIGBCUWZkuzp86JaHye4A",
     name: "Calendar",
     icon: "calendar",
     color: "cyan",
-    route: "/scheduled/calendar"
+    route: Routes.scheduled_calendar
 };
 const reminders = {
     id: "XueTfO9q9EuzgzsMcjI1oA",
     name: "Reminders",
     icon: "notifications",
     color: "cyan",
-    route: "/scheduled/reminders"
+    route: Routes.scheduled_reminders
 };
 const scheduled = {
     id: "ELm2BGNyHkCGsEzL5hp_JQ",
     name: "Scheduled",
     icon: "time",
     color: "cyan",
-    route: "/scheduled",
+    route: Routes.scheduled,
     children: [calendar,reminders]
 };
 const someday = {
@@ -75,35 +109,35 @@ const someday = {
     name: "Someday",
     icon: "pause",
     color: "purple",
-    route: "/someday"
+    route: Routes.someday
 };
 const project1 = {
     id: "7EHOtAYARkG0c43qsDH5cQ",
     name: "Project 1",
     icon: "assignment",
     color: "pink",
-    route: "/projects/1"
+    route: Routes.projects_1
 };
 const project2 = {
     id: "0dCP51BWpEuPWDLiWVKQOQ",
     name: "Project 2",
     icon: "assignment",
     color: "pink",
-    route: "/projects/2"
+    route: Routes.projects_2
 };
 const project3 = {
     id: "C_xUMSgdpEuS4Yt1XlO-XQ",
     name: "Project 3",
     icon: "assignment",
     color: "pink",
-    route: "/projects/3"
+    route: Routes.projects_3
 };
 const projects = {
     id: "UeWFiTObrEGrl88O9woGtA",
     name: "Projects",
     icon: "assignment-o",
     color: "pink",
-    route: "/projects",
+    route: Routes.projects,
     children: [project1,project1,project3]
 };
 const review = {
@@ -111,42 +145,42 @@ const review = {
     name: "Review",
     icon: "local-cafe",
     color: "brown",
-    route: "/review"
+    route: Routes.review
 };
 const checklists = {
     id: "uP4uSZ3m9U_bDloeUpDcYw",
     name: "Checklists",
     icon: "view-list-alt",
     color: "deep-purple",
-    route: "/lists/checklists"
+    route: Routes.lists_checklists
 };
 const reference = {
     id: "f4NkhuA_PkGyRi7yZIx0Qg",
     name: "Reference",
     icon: "book",
     color: "deep-purple",
-    route: "/lists/reference"
+    route: Routes.lists_reference
 };
 const done = {
     id: "3Jrjgc86U0m6afkizxB2SA",
     name: "Done",
     icon: "archive",
     color: "deep-purple",
-    route: "/lists/done"
+    route: Routes.lists_done
 };
 const trash = {
     id: "pSzvcNe3T0q5fwcB2kDUtQ",
     name: "Trash",
     icon: "delete",
     color: "deep-purple",
-    route: "/lists/trash"
+    route: Routes.lists_trash
 };
 const lists = {
     id: "ZABTfpmKh0KSbeN7QwKd3Q",
     name: "Lists",
     icon: "view-list-alt",
     color: "deep-purple",
-    route: "/lists",
+    route: Routes.lists,
     children: [checklists,reference,done,trash]
 };
 const roles = {
@@ -154,35 +188,35 @@ const roles = {
     name: "Roles",
     icon: "local-offer",
     color: "teal",
-    route: "/contexts/roles"
+    route: Routes.contexts_roles
 };
 const contexts = {
     id: "QXFQzrUDCUC_kfWP9zSPDg",
     name: "Contexts ",
     icon: "pin",
     color: "teal",
-    route: "/contexts/contexts"
+    route: Routes.contexts_contexts
 };
 const flags = {
     id: "0w0JGgMyX0e0YWm583VwOQ",
     name: "Flags ",
     icon: "flag",
     color: "teal",
-    route: "/contexts/flags"
+    route: Routes.contexts_flags
 };
 const delegates = {
     id: "QcRkScJUWkesxZ3Wn-ZT_Q",
     name: "Delegates ",
     icon: "account-box",
     color: "teal",
-    route: "/contexts/delegates"
+    route: Routes.contexts_delegates
 };
 const contexttypes = {
     id: "TuVm9HPakUeoCI2e7XLXPA",
     name: "Contexts",
     icon: "pin",
     color: "teal",
-    route: "/contexts",
+    route: Routes.contexts,
     children: [roles,contexts,flags,delegates]
 };
 const profile = {
@@ -190,21 +224,21 @@ const profile = {
     name: "Profile ",
     icon: "account-circle",
     color: "indigo",
-    route: "/settings/profile"
+    route: Routes.settings_profile
 };
 const general = {
     id: "XcWlwKAXUUS-R-GHN6Ugfg",
     name: "General ",
     icon: "settings",
     color: "indigo",
-    route: "/settings/general"
+    route: Routes.settings_general
 };
 const settings = {
     id: "lMsxrLlF2Eq6PHgxX2_jkw",
     name: "Settings",
     icon: "settings",
     color: "indigo",
-    route: "/settings",
+    route: Routes.settings,
     children: [profile,general]
 }
 menudata = [
@@ -221,40 +255,40 @@ menudata = [
     settings
 ];
 //roles,contexts,flags,delegates
-routelookup = {
-    "/":[[],[]],
-    "/inbox":[[],[inbox]],
-    "/next":[[1],[next]],
-    "/next/today":[[1],[next,today]],
-    "/next/thisweek":[[1],[next,thisweek]],
-    "/next/soon":[[1],[next,soon]],
-    "/focus":[[2],[focus]],
-    "/waitingfor":[[3],[waitingfor]],
-    "/scheduled":[[4],[scheduled]],
-    "/scheduled/calendars":[[4],[scheduled,calendar]],
-    "/scheduled/reminders":[[4],[scheduled,reminders]],
-    "/someday":[[5],[someday]],
-    "/projects":[[6],[projects]],
-    "/projects/projects1":[[6],[projects,project1]],
-    "/projects/projects2":[[6],[projects,project2]],
-    "/projects/projects3":[[6],[projects,project3]],
-    "/review":[[7],[review]],
-    "/lists":[[8],[lists]],
-    "/lists/checklists":[[8],[lists,checklists]],
-    "/lists/reference":[[8],[lists,reference]],
-    "/lists/done":[[8],[lists,done]],
-    "/lists/trash":[[8],[lists,trash]],
-    "/contexttypes":[[9],[contexttypes]],
-    "/contexttypes/roles":[[9],[contexttypes,roles]],
-    "/contexttypes/contexts":[[9],[contexttypes,contexts]],
-    "/contexttypes/flags":[[9],[contexttypes,flags]],
-    "/contexttypes/delegates":[[9],[contexttypes,delegates]],
-    "/settings":[[10],[settings]],
-    "/settings/profile":[[10],[settings,profile]],
-    "/settings/general":[[10],[settings,general]]
+routestate = {
+    [Routes.root] :[[],[]],
+    [Routes.inbox]:[[],[inbox]],
+    [Routes.next]:[[1],[next]],
+    [Routes.next_today]:[[1],[next,today]],
+    [Routes.next_thisweek]:[[1],[next,thisweek]],
+    [Routes.next_soon]:[[1],[next,soon]],
+    [Routes.focus]:[[],[focus]],
+    [Routes.waitingfor]:[[],[waitingfor]],
+    [Routes.scheduled]:[[4],[scheduled]],
+    [Routes.scheduled_calendar]:[[4],[scheduled,calendar]],
+    [Routes.scheduled_reminders]:[[4],[scheduled,reminders]],
+    [Routes.someday]:[[],[someday]],
+    [Routes.projects]:[[6],[projects]],
+    [Routes.projects_project_1]:[[6],[projects,project1]],
+    [Routes.projects_project_2]:[[6],[projects,project2]],
+    [Routes.projects_project_3]:[[6],[projects,project3]],
+    [Routes.review]:[[],[review]],
+    [Routes.lists]:[[8],[lists]],
+    [Routes.lists_checklists]:[[8],[lists,checklists]],
+    [Routes.lists_reference]:[[8],[lists,reference]],
+    [Routes.lists_done]:[[8],[lists,done]],
+    [Routes.lists_trash]:[[8],[lists,trash]],
+    [Routes.contexts]:[[9],[contexttypes]],
+    [Routes.contexts_roles]:[[9],[contexttypes,roles]],
+    [Routes.contexts_contexts]:[[9],[contexttypes,contexts]],
+    [Routes.contexts_flags]:[[9],[contexttypes,flags]],
+    [Routes.contexts_delegates]:[[9],[contexttypes,delegates]],
+    [Routes.settings]:[[10],[settings]],
+    [Routes.settings_profile]:[[10],[settings,profile]],
+    [Routes.settings_general]:[[10],[settings,general]]
 };
 
-
+console.log('routestate: ' + routestate["/inbox"][1][0].name);
 //var path = [];
 //var selected = [];
 //var lookup = {};
