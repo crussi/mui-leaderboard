@@ -1,6 +1,6 @@
 
 
-BrowserItem = React.createClass({
+SliderMenuItem = React.createClass({
     getInitialState() {
         return {
             isSelected: false

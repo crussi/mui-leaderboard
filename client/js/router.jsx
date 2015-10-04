@@ -16,9 +16,7 @@ FlowRouter.route('/',{
         //} else {
             //FlowLayout.render('layout-unauth', { header: "headerunauth", content: "content-mktg"});
 
-            //ReactLayout.render(SidebarApp, {content: <Container name={"world"} />, routestate: routestate[Routes.root]});
             ReactLayout.render(SidebarApp, {content: <Container name={"world"} />});
-
         //}
 
     }
@@ -29,7 +27,6 @@ FlowRouter.route('/inbox',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"inbox"} />, routestate: routestate[Routes.inbox]});
         ReactLayout.render(SidebarApp, {content: <Container name={"inbox"} />});
     }
 });
@@ -42,7 +39,6 @@ nextRoutes.route('/',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"next"} />, routestate: routestate[Routes.next]});
         ReactLayout.render(SidebarApp, {content: <Container name={"next"} />});
     }
 });
@@ -51,7 +47,6 @@ nextRoutes.route('/today',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"today"} />, routestate: routestate[Routes.next_today]});
         ReactLayout.render(SidebarApp, {content: <Container name={"today"} />});
     }
 });
@@ -60,7 +55,6 @@ nextRoutes.route('/thisweek',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"thisweek"} />, routestate: routestate[Routes.next_thisweek]});
         ReactLayout.render(SidebarApp, {content: <Container name={"thisweek"} />});
     }
 });
@@ -69,7 +63,6 @@ nextRoutes.route('/soon',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"soon"} />, routestate: routestate[Routes.next_soon]});
         ReactLayout.render(SidebarApp, {content: <Container name={"soon"} />});
     }
 });
@@ -79,7 +72,6 @@ FlowRouter.route('/focus',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"focus"} />, routestate: routestate[Routes.focus]});
         ReactLayout.render(SidebarApp, {content: <Container name={"focus"} />});
     }
 });
@@ -89,7 +81,6 @@ FlowRouter.route('/waitingfor',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"waiting for"} />, routestate: routestate[Routes.waitingfor]});
         ReactLayout.render(SidebarApp, {content: <Container name={"waiting for"} />});
     }
 });
@@ -102,7 +93,6 @@ scheduledRoutes.route('/',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"scheduled"} />, routestate: routestate[Routes.scheduled]});
         ReactLayout.render(SidebarApp, {content: <Container name={"scheduled"} />});
     }
 });
@@ -111,7 +101,6 @@ scheduledRoutes.route('/calendar',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"calendar"} />});
         ReactLayout.render(SidebarApp, {content: <Container name={"calendar"} />, routestate: routestate[Routes.scheduled_calendar]});
     }
 });
@@ -120,7 +109,6 @@ scheduledRoutes.route('/reminders',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"reminders"} />, routestate: routestate[Routes.scheduled_reminders]});
         ReactLayout.render(SidebarApp, {content: <Container name={"reminders"} />});
     }
 });
@@ -129,7 +117,6 @@ FlowRouter.route('/someday',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        //ReactLayout.render(SidebarApp, {content: <Container name={"someday"} />, routestate: routestate[Routes.someday]});
         ReactLayout.render(SidebarApp, {content: <Container name={"someday"} />});
     }
 });
