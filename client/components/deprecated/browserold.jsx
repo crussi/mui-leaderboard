@@ -129,7 +129,7 @@ BrowserOld = React.createClass({
                 {navtitle}
             </div>
 
-            <SlideTransition selectedId={selectedId} depth={filteredItems.length} className="items-container">
+            <SliderTransition selectedId={selectedId} depth={filteredItems.length} className="items-container">
                 {items.map(function(item, index) {
                     let isSelected = selectedId == item.id;
                     //console.log("isSelected: " + isSelected);
@@ -147,7 +147,7 @@ BrowserOld = React.createClass({
                         return <div className={itemClass} onClick={e => this.navDown(index,item,true)} data-name={item.name} key={item.name}><i className={iconClass}></i>{item.name}</div>;
                     }
                 }.bind(this))}
-            </SlideTransition>
+            </SliderTransition>
         </div>;
     }
 });

@@ -71,11 +71,11 @@ SliderMenu = React.createClass({
                 {navtitle}
             </div>
 
-            <SlideTransition depth={path.length} selectedId={selectedId} className="items-container">
+            <SliderTransition depth={path.length} selectedId={selectedId} className="items-container">
                 {items.map(function(item, index) {
                     return <SliderMenuItem item={item} index={index} selectedId={selectedId} callbackNavDown={this.navDown}></SliderMenuItem>
                 }.bind(this))}
-            </SlideTransition>
+            </SliderTransition>
 
         </div>;
     }

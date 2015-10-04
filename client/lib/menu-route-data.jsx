@@ -1,4 +1,17 @@
-Routes = {
+/*
+This data is in /lib so it'll load first and be available to the components
+There are 3 main objects: routes, menudata and routestate
+routes - Contains all possible routes for the app
+menudata - Multi-level slider menu defines metadata for all menu items
+routestate - Supports browser history back/forward.  When a route is revisited because
+of the back/forward button, the slidermenu state is set so that the correct slidermenuitems
+are displayed and the correct slidermenuitem is selected.  The routestate is not intuitive.
+The reason is that it is based off of the design of the slidermenu and the slidertransition
+components.
+
+ */
+
+routes = {
     root : "/",
     inbox : "/inbox",
     next : "/next",
@@ -31,41 +44,44 @@ Routes = {
     settings_general : "/settings/general"
 }
 
-
+/*
+These are the menu items.  They are made const to promote reuse and consolidation
+of code
+*/
 const inbox = {
     id: "FDDp1ru10UCxl2Xnv2NT2Q",
     name: "Inbox",
     icon: "inbox",
     color: "blue",
-    route: Routes.inbox
+    route: routes.inbox
 };
 const today = {
     id: "bFolGPm9ikShWzx76mq0GQ",
     name: "Today",
     icon: "calendar",
     color: "green",
-    route: Routes.next_today
+    route: routes.next_today
 };
 const thisweek = {
     id: "_dy3uCTWF0qsWqELiinqFg",
     name: "This Week",
     icon: "calendar-note",
     color: "green",
-    route: Routes.next_thisweek
+    route: routes.next_thisweek
 };
 const soon = {
     id: "w7mtxGN6Vkycw0pzuc7nHw",
     name: "Soon",
     icon: "calendar-check",
     color: "green",
-    route: Routes.next_soon
+    route: routes.next_soon
 };
 const next = {
     id: "I10ifHO0PEGrSxI_nNi-ag",
     name: "Next",
     icon: "check-square",
     color: "green",
-    route: Routes.next,
+    route: routes.next,
     children: [today,thisweek,soon]
 };
 const focus = {
@@ -73,35 +89,35 @@ const focus = {
     name: "Focus",
     icon: "star",
     color: "red",
-    route: Routes.focus
+    route: routes.focus
 };
 const waitingfor = {
     id: "qvyAi6BwzUefiROWuco38g",
     name: "Waiting for",
     icon: "account-box",
     color: "orange",
-    route: Routes.waitingfor
+    route: routes.waitingfor
 };
 const calendar = {
     id: "kvIGBCUWZkuzp86JaHye4A",
     name: "Calendar",
     icon: "calendar",
     color: "cyan",
-    route: Routes.scheduled_calendar
+    route: routes.scheduled_calendar
 };
 const reminders = {
     id: "XueTfO9q9EuzgzsMcjI1oA",
     name: "Reminders",
     icon: "notifications",
     color: "cyan",
-    route: Routes.scheduled_reminders
+    route: routes.scheduled_reminders
 };
 const scheduled = {
     id: "ELm2BGNyHkCGsEzL5hp_JQ",
     name: "Scheduled",
     icon: "time",
     color: "cyan",
-    route: Routes.scheduled,
+    route: routes.scheduled,
     children: [calendar,reminders]
 };
 const someday = {
@@ -109,35 +125,35 @@ const someday = {
     name: "Someday",
     icon: "pause",
     color: "purple",
-    route: Routes.someday
+    route: routes.someday
 };
 const project1 = {
     id: "7EHOtAYARkG0c43qsDH5cQ",
     name: "Project 1",
     icon: "assignment",
     color: "pink",
-    route: Routes.projects_1
+    route: routes.projects_1
 };
 const project2 = {
     id: "0dCP51BWpEuPWDLiWVKQOQ",
     name: "Project 2",
     icon: "assignment",
     color: "pink",
-    route: Routes.projects_2
+    route: routes.projects_2
 };
 const project3 = {
     id: "C_xUMSgdpEuS4Yt1XlO-XQ",
     name: "Project 3",
     icon: "assignment",
     color: "pink",
-    route: Routes.projects_3
+    route: routes.projects_3
 };
 const projects = {
     id: "UeWFiTObrEGrl88O9woGtA",
     name: "Projects",
     icon: "assignment-o",
     color: "pink",
-    route: Routes.projects,
+    route: routes.projects,
     children: [project1,project1,project3]
 };
 const review = {
@@ -145,42 +161,42 @@ const review = {
     name: "Review",
     icon: "local-cafe",
     color: "brown",
-    route: Routes.review
+    route: routes.review
 };
 const checklists = {
     id: "uP4uSZ3m9U_bDloeUpDcYw",
     name: "Checklists",
     icon: "view-list-alt",
     color: "deep-purple",
-    route: Routes.lists_checklists
+    route: routes.lists_checklists
 };
 const reference = {
     id: "f4NkhuA_PkGyRi7yZIx0Qg",
     name: "Reference",
     icon: "book",
     color: "deep-purple",
-    route: Routes.lists_reference
+    route: routes.lists_reference
 };
 const done = {
     id: "3Jrjgc86U0m6afkizxB2SA",
     name: "Done",
     icon: "archive",
     color: "deep-purple",
-    route: Routes.lists_done
+    route: routes.lists_done
 };
 const trash = {
     id: "pSzvcNe3T0q5fwcB2kDUtQ",
     name: "Trash",
     icon: "delete",
     color: "deep-purple",
-    route: Routes.lists_trash
+    route: routes.lists_trash
 };
 const lists = {
     id: "ZABTfpmKh0KSbeN7QwKd3Q",
     name: "Lists",
     icon: "view-list-alt",
     color: "deep-purple",
-    route: Routes.lists,
+    route: routes.lists,
     children: [checklists,reference,done,trash]
 };
 const roles = {
@@ -188,35 +204,35 @@ const roles = {
     name: "Roles",
     icon: "local-offer",
     color: "teal",
-    route: Routes.contexts_roles
+    route: routes.contexts_roles
 };
 const contexts = {
     id: "QXFQzrUDCUC_kfWP9zSPDg",
     name: "Contexts ",
     icon: "pin",
     color: "teal",
-    route: Routes.contexts_contexts
+    route: routes.contexts_contexts
 };
 const flags = {
     id: "0w0JGgMyX0e0YWm583VwOQ",
     name: "Flags ",
     icon: "flag",
     color: "teal",
-    route: Routes.contexts_flags
+    route: routes.contexts_flags
 };
 const delegates = {
     id: "QcRkScJUWkesxZ3Wn-ZT_Q",
     name: "Delegates ",
     icon: "account-box",
     color: "teal",
-    route: Routes.contexts_delegates
+    route: routes.contexts_delegates
 };
 const contexttypes = {
     id: "TuVm9HPakUeoCI2e7XLXPA",
     name: "Contexts",
     icon: "pin",
     color: "teal",
-    route: Routes.contexts,
+    route: routes.contexts,
     children: [roles,contexts,flags,delegates]
 };
 const profile = {
@@ -224,23 +240,27 @@ const profile = {
     name: "Profile ",
     icon: "account-circle",
     color: "indigo",
-    route: Routes.settings_profile
+    route: routes.settings_profile
 };
 const general = {
     id: "XcWlwKAXUUS-R-GHN6Ugfg",
     name: "General ",
     icon: "settings",
     color: "indigo",
-    route: Routes.settings_general
+    route: routes.settings_general
 };
 const settings = {
     id: "lMsxrLlF2Eq6PHgxX2_jkw",
     name: "Settings",
     icon: "settings",
     color: "indigo",
-    route: Routes.settings,
+    route: routes.settings,
     children: [profile,general]
 }
+
+/*
+menudata is used to populate the slidermenu
+ */
 menudata = [
     inbox,
     next,
@@ -254,62 +274,48 @@ menudata = [
     contexttypes,
     settings
 ];
-//roles,contexts,flags,delegates
+
+/*
+routestate is used to support browser history back/forward.  When a
+route is revisited the state for the route is retrieved from this hashtable.
+Note: key - route
+      value - pair of arrays:
+      first array - path (and depth) of the selected parent node. If an empty array
+      then the menu item has no children, otherwise, it's the array index of the parent
+      node.
+      second array - selected items
+ */
 routestate = {
-    [Routes.root] :[[],[]],
-    [Routes.inbox]:[[],[inbox]],
-    [Routes.next]:[[1],[next]],
-    [Routes.next_today]:[[1],[next,today]],
-    [Routes.next_thisweek]:[[1],[next,thisweek]],
-    [Routes.next_soon]:[[1],[next,soon]],
-    [Routes.focus]:[[],[focus]],
-    [Routes.waitingfor]:[[],[waitingfor]],
-    [Routes.scheduled]:[[4],[scheduled]],
-    [Routes.scheduled_calendar]:[[4],[scheduled,calendar]],
-    [Routes.scheduled_reminders]:[[4],[scheduled,reminders]],
-    [Routes.someday]:[[],[someday]],
-    [Routes.projects]:[[6],[projects]],
-    [Routes.projects_project_1]:[[6],[projects,project1]],
-    [Routes.projects_project_2]:[[6],[projects,project2]],
-    [Routes.projects_project_3]:[[6],[projects,project3]],
-    [Routes.review]:[[],[review]],
-    [Routes.lists]:[[8],[lists]],
-    [Routes.lists_checklists]:[[8],[lists,checklists]],
-    [Routes.lists_reference]:[[8],[lists,reference]],
-    [Routes.lists_done]:[[8],[lists,done]],
-    [Routes.lists_trash]:[[8],[lists,trash]],
-    [Routes.contexts]:[[9],[contexttypes]],
-    [Routes.contexts_roles]:[[9],[contexttypes,roles]],
-    [Routes.contexts_contexts]:[[9],[contexttypes,contexts]],
-    [Routes.contexts_flags]:[[9],[contexttypes,flags]],
-    [Routes.contexts_delegates]:[[9],[contexttypes,delegates]],
-    [Routes.settings]:[[10],[settings]],
-    [Routes.settings_profile]:[[10],[settings,profile]],
-    [Routes.settings_general]:[[10],[settings,general]]
+    [routes.root] :[[],[]],
+    [routes.inbox]:[[],[inbox]],
+    [routes.next]:[[1],[next]],
+    [routes.next_today]:[[1],[next,today]],
+    [routes.next_thisweek]:[[1],[next,thisweek]],
+    [routes.next_soon]:[[1],[next,soon]],
+    [routes.focus]:[[],[focus]],
+    [routes.waitingfor]:[[],[waitingfor]],
+    [routes.scheduled]:[[4],[scheduled]],
+    [routes.scheduled_calendar]:[[4],[scheduled,calendar]],
+    [routes.scheduled_reminders]:[[4],[scheduled,reminders]],
+    [routes.someday]:[[],[someday]],
+    [routes.projects]:[[6],[projects]],
+    [routes.projects_project_1]:[[6],[projects,project1]],
+    [routes.projects_project_2]:[[6],[projects,project2]],
+    [routes.projects_project_3]:[[6],[projects,project3]],
+    [routes.review]:[[],[review]],
+    [routes.lists]:[[8],[lists]],
+    [routes.lists_checklists]:[[8],[lists,checklists]],
+    [routes.lists_reference]:[[8],[lists,reference]],
+    [routes.lists_done]:[[8],[lists,done]],
+    [routes.lists_trash]:[[8],[lists,trash]],
+    [routes.contexts]:[[9],[contexttypes]],
+    [routes.contexts_roles]:[[9],[contexttypes,roles]],
+    [routes.contexts_contexts]:[[9],[contexttypes,contexts]],
+    [routes.contexts_flags]:[[9],[contexttypes,flags]],
+    [routes.contexts_delegates]:[[9],[contexttypes,delegates]],
+    [routes.settings]:[[10],[settings]],
+    [routes.settings_profile]:[[10],[settings,profile]],
+    [routes.settings_general]:[[10],[settings,general]]
 };
 
-console.log('routestate: ' + routestate["/inbox"][1][0].name);
-//var path = [];
-//var selected = [];
-//var lookup = {};
-
-//path.push(0);
-//selected.push('abc');//lookup["/inbox"] = [path, selected];
-//lookup["two"] = "Second";
-//lookup["three"] = "Third";
-
-//var lookup = {
-//    "/inbox": inbox,
-//    "two": "second",
-//    "three": "third"
-//};
-
-
-//console.log(lookup["/inbox"]);
-//console.log(lookup["two"]);
-//console.log(lookup["three"]);
-console.log("hello");
-//console.log(data[0]);
-//console.log(data[1]);
-//console.log(routestate['/inbox']);
 

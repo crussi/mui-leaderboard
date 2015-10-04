@@ -1,14 +1,3 @@
-//Sidebar = React.createClass({
-//
-//    render() {
-//        return (
-//            <div>
-//            <MaterialTitlePanel title="hello world" />
-//            <div>sidebar</div>
-//            </div>
-//        );
-//    }
-//});
 
 const update = React.addons.update;
 

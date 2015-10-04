@@ -19,7 +19,6 @@ const styles = {
 
 SidebarContent = React.createClass({
     render() {
-        //console.log('SidebarContent render');
         let style = styles.sidebar;
 
         if (this.props.style) {
@@ -30,8 +29,8 @@ SidebarContent = React.createClass({
             routestate: routestate
         }
         return (
-            <MaterialTitlePanel title="Menu" style={style}>
+            <TitlePanel title="Menu" style={style}>
                 <SliderMenu {...sliderMenuProps}/>
-            </MaterialTitlePanel>);
+            </TitlePanel>);
     },
 });

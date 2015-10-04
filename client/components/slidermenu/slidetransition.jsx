@@ -1,6 +1,6 @@
 const {CSSTransitionGroup} = React.addons;
 
-SlideTransition = React.createClass({
+SliderTransition = React.createClass({
     propTypes: {
         depth: React.PropTypes.number.isRequired,
         name: React.PropTypes.string
@@ -20,16 +20,14 @@ SlideTransition = React.createClass({
         let directionChanged = nextState.direction !== this.state.direction;
         //console.log('this.props.selectedId: ' + this.props.selectedId + ' nextProps.selectedId: ' + nextProps.selectedId);
         let selectedIdChanged = nextProps.selectedId !== this.props.selectedId;
-        console.log(' slider depthChanged: ' + depthChanged + ' directionChanged: ' + directionChanged + ' selectedIdChanged: ' + selectedIdChanged);
+        //console.log(' slider depthChanged: ' + depthChanged + ' directionChanged: ' + directionChanged + ' selectedIdChanged: ' + selectedIdChanged);
         return depthChanged || directionChanged || selectedIdChanged;
-        //return true;
     },
     componentWillReceiveProps(newProps) {
         const direction = newProps.depth >= this.props.depth ? 'right' : 'left';
         this.setState({direction});
     },
     render() {
-        //console.log('slider render');
         const {name, depth} = this.props;
         const outerProps = {
             className: `${name}-outer-wrapper ${this.props.className}`,

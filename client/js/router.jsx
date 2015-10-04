@@ -101,7 +101,7 @@ scheduledRoutes.route('/calendar',{
         //this.register('menuItems', Meteor.subscribe('menu-items'));
     },
     action: function() {
-        ReactLayout.render(SidebarApp, {content: <Container name={"calendar"} />, routestate: routestate[Routes.scheduled_calendar]});
+        ReactLayout.render(SidebarApp, {content: <Container name={"calendar"} />});
     }
 });
 scheduledRoutes.route('/reminders',{

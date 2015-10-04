@@ -12,7 +12,7 @@ const styles = {
 SidebarApp = React.createClass({
     getInitialState() {
         return {
-            docked: true,
+            docked: false,
             open: false,
             transitions: true,
             touch: true,
@@ -20,9 +20,28 @@ SidebarApp = React.createClass({
             dragToggleDistance: 30,
         };
     },
+    toggleOpen(ev) {
+        this.setState({open: !this.state.open});
 
+        if (ev) {
+            ev.preventDefault();
+        }
+    },
     onSetOpen(open) {
         this.setState({open: open});
+    },
+    componentDidMount() {
+        let mql = window.matchMedia(`(min-width: 800px)`);
+        mql.addListener(this.mediaQueryChanged);
+        this.setState({mql: mql, docked: mql.matches});
+    },
+
+    componentWillUnmount() {
+        this.state.mql.removeListener(this.mediaQueryChanged);
+    },
+
+    mediaQueryChanged() {
+        this.setState({docked: this.state.mql.matches});
     },
 
     menuButtonClick(ev) {
@@ -81,9 +100,9 @@ SidebarApp = React.createClass({
 
         return (
             <Sidebar {...sidebarProps}>
-                <MaterialTitlePanel title={contentHeader} >
+                <TitlePanel title={contentHeader} >
                     {this.props.content}
-                </MaterialTitlePanel>
+                </TitlePanel>
             </Sidebar>
         );
     }

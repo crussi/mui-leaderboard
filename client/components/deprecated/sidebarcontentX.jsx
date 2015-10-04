@@ -33,11 +33,11 @@ SidebarContentX = React.createClass({
         }
 
         return (
-            <MaterialTitlePanel title="Menu" style={style}>
+            <TitlePanel title="Menu" style={style}>
                 <a href='index.html' style={styles.sidebarLink}>Home</a>
                 <a href='responsive_example.html' style={styles.sidebarLink}>Responsive Example</a>
                 <div style={styles.divider} />
                 {links}
-            </MaterialTitlePanel>);
+            </TitlePanel>);
     },
 });

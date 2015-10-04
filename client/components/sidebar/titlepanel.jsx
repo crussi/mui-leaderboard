@@ -20,7 +20,7 @@ const styles = {
     },
 };
 
-MaterialTitlePanel = React.createClass({
+TitlePanel = React.createClass({
     render() {
         let rootStyle = this.props.style ?
             update(styles.root, {$merge: this.props.style}) :
