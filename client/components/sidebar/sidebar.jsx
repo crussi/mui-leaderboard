@@ -18,7 +18,7 @@ const styles = {
         top: 0,
         left: 0,
         bottom: 0,
-        boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.15)',
+        //boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.15)',
         transition: 'transform .3s ease-out',
         transform: 'translateX(-100%)',
         WebkitTransition: '-webkit-transform .3s ease-out',

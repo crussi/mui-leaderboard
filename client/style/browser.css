@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .browser-panel {
-    margin-top: 54px;
+    margin-top: 44px;
 }
 .browser-panel p {
     color: #aaaaaa;
@@ -46,18 +46,18 @@
     border-color: #eee;
     text-align: center;
     line-height: 20px;
-    height: 40px;
+    height: 30px;
     padding: 0 10px;
     margin: 0;
     position: absolute;
-    top: 64px;
+    top: 75px;
     left: 0;
     right: 0;
 }
 .browser .nav-arrow {
     box-sizing: border-box;
     width: 40px;
-    height: 40px;
+    height: 30px;
     position: absolute;
     top: 0;
     z-index: 1;
@@ -67,7 +67,8 @@
     white-space: nowrap;
     overflow: hidden;
     display: block;
-    padding: 7px 0;
+    padding: 5px 0;
+    color: #aaa;
 }
 .browser i.zmdi-chevron-left {
     font-size: 18px;
@@ -78,7 +79,7 @@
     margin-right: 10px;
     left: 0;
     padding: 7px 0;
-    color: #bbb;
+    color: #aaa;
 }
 
 .browser i.zmdi-chevron-right {
@@ -91,12 +92,12 @@
     position: absolute;
     right: 5px;
     top: 50%;
-    color: #bbb;
+    color: #aaa;
 }
 .browser .menu-item > i.zmdi,
 .browser .item > i.zmdi {
     margin-left: 10px;
-    margin-right: 24px;
+    margin-right: 35px;
     font-size: 22px;
 }
 

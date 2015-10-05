@@ -29,7 +29,7 @@ SidebarContent = React.createClass({
             routestate: routestate
         }
         return (
-            <TitlePanel title="Menu" style={style}>
+            <TitlePanel title="Toduo" style={style}>
                 <SliderMenu {...sliderMenuProps}/>
             </TitlePanel>);
     },

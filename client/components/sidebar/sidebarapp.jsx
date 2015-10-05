@@ -83,7 +83,7 @@ SidebarApp = React.createClass({
         let contentHeader = (
             <span>
         {!this.state.docked &&
-        <a onClick={this.menuButtonClick} href='#' style={styles.contentHeaderMenuLink}>=</a>}
+        <a onClick={this.menuButtonClick} href='#' style={styles.contentHeaderMenuLink}><i className="zmdi zmdi-menu"></i></a>}
                 <span> React Sidebar</span>
       </span>);
 

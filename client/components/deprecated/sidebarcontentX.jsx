@@ -17,7 +17,7 @@ const styles = {
     },
 };
 
-SidebarContentX = React.createClass({
+SidebarContentXX = React.createClass({
     render() {
         let style = styles.sidebar;
 
