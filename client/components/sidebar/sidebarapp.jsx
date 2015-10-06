@@ -94,7 +94,8 @@ SidebarApp = React.createClass({
     },
     onSubmit(input) {
         if (!input) return;
-        console.info(`Searching "${input}"`);
+        console.info("Parent onSubmit input: " + input);
+
     },
     render() {
         //console.log('sidebarapp render');

@@ -1,6 +1,7 @@
 const KEY_CODES = {
     up: 38,
-    down: 40
+    down: 40,
+    enter: 13
 };
 
 SearchBar = React.createClass({
@@ -55,8 +56,12 @@ SearchBar = React.createClass({
     },
     onKeyDown(e) {
         let {highlightedItem: item, suggestions} = this.state;
-        if (suggestions.length == 0) return;
+        //if (suggestions.length == 0) return;
         let key = e.which;
+        if (key == KEY_CODES.enter) {
+            this.onSubmit(e);
+            return;
+        }
         if (key != KEY_CODES.up && key != KEY_CODES.down) return;
         e.preventDefault();
         let lastItem = suggestions.length - 1;
@@ -77,10 +82,15 @@ SearchBar = React.createClass({
         this.search(suggestion);
     },
     onSubmit(e) {
+        console.log('onSubmit');
         e.preventDefault();
-        let input = this.state.value.toLowerCase().trim();
-        if (input) return;
+        let input = this.state.value.trim();
+        //if (input) return;
         //this.search(input);
+        if (this.props.onSubmit) {
+            this.props.onSubmit(input);
+            this.setState({value: ""});
+        }
     },
     onClear(e) {
         console.log('onClear');
@@ -114,14 +124,8 @@ SearchBar = React.createClass({
                         onBlur={() => this.setState({focused: false})}
                         onFocus={() => this.setState({focused: true})} />
                     <button
-                        className="search-bar-submit"
-                        type="submit"
-                        onClick={this.props.onSubmit && this.onSubmit} >
-                        <i className="zmdi zmdi-check"></i>
-                    </button>
-                    <button
                         className="search-bar-close"
-                        type="submit"
+
                         onClick={this.onClear} >
                         <i className="zmdi zmdi-close"></i>
                     </button>
