@@ -15,6 +15,10 @@ const styles = {
         height: 1,
         backgroundColor: '#757575',
     },
+    title: {
+        marginTop: '3px',
+        marginBottom: '4px'
+    }
 };
 
 SidebarContent = React.createClass({
@@ -27,9 +31,12 @@ SidebarContent = React.createClass({
         let sliderMenuProps = {
             items: menudata,
             routestate: routestate
-        }
+        };
+        let contentHeader = (
+            <div style={styles.title}>Toduo</div>
+        );
         return (
-            <TitlePanel title="Toduo" style={style}>
+            <TitlePanel title={contentHeader} style={style}>
                 <SliderMenu {...sliderMenuProps}/>
             </TitlePanel>);
     },

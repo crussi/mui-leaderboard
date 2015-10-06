@@ -9,6 +9,14 @@ const styles = {
     },
 };
 
+const suggestions = [
+    'mac pro',
+    'mac mini',
+    'macbook',
+    'macbook air',
+    'macbook pro'
+];
+
 SidebarApp = React.createClass({
     getInitialState() {
         return {
@@ -18,6 +26,7 @@ SidebarApp = React.createClass({
             touch: true,
             touchHandleWidth: 20,
             dragToggleDistance: 30,
+            inboxValue:''
         };
     },
     toggleOpen(ev) {
@@ -75,7 +84,18 @@ SidebarApp = React.createClass({
                 {prop} <input type='number' onChange={setMethod} value={this.state[prop]} />
             </p>);
     },
-
+    onChange(input, resolve) {
+        // Simulate AJAX request
+        setTimeout(() => {
+            resolve(suggestions.filter((suggestion) =>
+                    suggestion.match(new RegExp('^' + input.replace(/\W\s/g, ''), 'i'))
+            ));
+        }, 25);
+    },
+    onSubmit(input) {
+        if (!input) return;
+        console.info(`Searching "${input}"`);
+    },
     render() {
         //console.log('sidebarapp render');
         let sidebar = <SidebarContent routestate={this.props.routestate} />;
@@ -84,7 +104,12 @@ SidebarApp = React.createClass({
             <span>
         {!this.state.docked &&
         <a onClick={this.menuButtonClick} href='#' style={styles.contentHeaderMenuLink}><i className="zmdi zmdi-menu"></i></a>}
-                <span> React Sidebar</span>
+                <span><form>
+                    <SearchBar
+                        placeholder="Inbox input ..."
+                        onChange={this.onChange}
+                        onSubmit={this.onSubmit} />
+                </form></span>
       </span>);
 
         let sidebarProps = {

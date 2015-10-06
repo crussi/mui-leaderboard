@@ -8,11 +8,12 @@ const styles = {
         width: '100%'
     },
     header: {
-        backgroundColor: '#03a9f4',
+        //backgroundColor: '#03a9f4',
+        backgroundColor: '#4285f4',
         //boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
         boxShadow: '0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.28)',
         color: 'white',
-        padding: '16px',
+        padding: '10px',
         fontSize: '1.5em',
         top: '0',
         position: 'fixed',
