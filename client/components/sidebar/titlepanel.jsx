@@ -24,7 +24,8 @@ const styles = {
         padding: '16px',
         backgroundColor: '#f2f2f2',
         height: '100%',
-        width: '100%'
+        width: '100%',
+        //marginRight: '20px'
     },
 };
 
