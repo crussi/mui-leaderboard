@@ -1,5 +1,18 @@
 
+const {
+    RaisedButton,
+    FontIcon,
+    Avatar,
+    AppBar,
+    LeftNav,
+    MenuItem,
+    IconButton
 
+
+    } = mui;
+
+const Colors = mui.Styles.Colors;
+const ThemeManager = new mui.Styles.ThemeManager();
 
 const styles = {
     contentHeaderMenuLink: {
@@ -18,6 +31,7 @@ const suggestions = [
 ];
 
 SidebarApp = React.createClass({
+    mixins: [ReactMeteorData],
     getInitialState() {
         return {
             docked: false,
@@ -28,6 +42,20 @@ SidebarApp = React.createClass({
             dragToggleDistance: 30,
             inboxValue:''
         };
+    },
+    childContextTypes: {
+        muiTheme: React.PropTypes.object
+    },
+    getChildContext: function() {
+        return {
+            muiTheme: ThemeManager.getCurrentTheme()
+        };
+    },
+    getMeteorData() {
+        return {
+        //    players: Players.find({}, { sort: { score: -1, name: 1 } }).fetch(),
+        //    selectedPlayer: Players.findOne(this.state.selectedPlayerId)
+        }
     },
     toggleOpen(ev) {
         this.setState({open: !this.state.open});
@@ -127,7 +155,7 @@ SidebarApp = React.createClass({
         return (
             <Sidebar {...sidebarProps}>
                 <TitlePanel title={contentHeader} >
-                    {this.props.content}
+                    {this.props.content()}
                 </TitlePanel>
             </Sidebar>
         );

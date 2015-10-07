@@ -120,6 +120,9 @@ function byDistance(a, b) {
 // A React component that quacks like an HTML <input> but which includes a
 // selectable list of suggestions for filling in its value.
 SuggestibleInput = React.createClass({
+    contextTypes: {
+        muiTheme: React.PropTypes.string
+    },
     getInitialState: function () {
         return {
             input: '',
