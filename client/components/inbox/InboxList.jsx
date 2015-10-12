@@ -33,20 +33,27 @@ InboxList = React.createClass({
         return <div style={listStyle}>
             <List>{
                 this.data.inboxItems.map((item) => {
-                    let style = {};
+                    let style = {
+                        paddingTop:'10px',
+                        paddingBottom:'10px'
+                    };
+                    let avatarStyle = {
+                        fontSize:'20px'
+                    }
                     if (this.props.selectedItemId === item._id) {
                         style["backgroundColor"] = "#eee";
                     }
-                    let today = moment(new Date().toJSON().slice(0,10));
+                    let today = moment(new Date().toJSON());
                     let days = today.diff(item.dateCreated,'days');
-                    console.log('today: ' + today);
-                    console.log('days: ' + days);
+                    let secondaryText = moment(item.dateCreated).fromNow();
+                    //console.log('today: ' + today);
+                    //console.log('days: ' + days);
                     return [
                         <ListItem key={ item._id }
                                   primaryText={ item.description }
                                   onClick={ this.selectItem.bind(this, item._id) }
-                                  leftAvatar={ <Avatar>{days}</Avatar> }
-                                  secondaryText={ "Created on: " + item.createdAt }
+                                  leftAvatar={ <Avatar style={avatarStyle}>{days}</Avatar> }
+                                  secondaryText={ "Entered " + secondaryText }
                                   style={style}/>,
                         <ListDivider/>
                     ]

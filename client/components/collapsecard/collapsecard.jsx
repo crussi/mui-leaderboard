@@ -1,0 +1,33 @@
+
+CollapseCard = React.createClass({
+    getInitialState(){
+        return {
+            active: false,
+            slideDirection: "up"
+        }
+    },
+    headingClicked(){
+        console.log('card headingClicked');
+        this.setState({ active: !this.state.active });
+    },
+    render: function () {
+        console.log('this.state.active: ' + this.state.active);
+        let cardClass = "collapse-card" + (this.state.active ? " active" : "");
+        let slideDirection = this.state.active ? " down" : "up";
+        console.log('cardClass: ' + cardClass);
+        console.log('slideDirection: ' + slideDirection);
+        return (
+            <div className={cardClass}>
+                <CollapseCardHeading title={this.props.title} headingClicked={this.headingClicked} />
+                <CollapseCardBody slideDirection={slideDirection}/>
+            </div>
+        );
+    }
+});
+
+
+//React.render(
+//    <CollapseCard title="Well, hello there"/>,
+//
+//    document.getElementById('content')
+//);

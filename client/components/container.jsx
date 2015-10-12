@@ -7,11 +7,15 @@ const styles = {
 }
 
 
-    Container = React.createClass({
+Container = React.createClass({
     render(){
         return <div style={styles.content}>
-            <h1>Hello, {this.props.name}</h1>
-            {this.props.children}
+            <div className="container">
+                <CollapseCard title={this.props.name}/>
+                <CollapseCard title={this.props.name}/>
+                <CollapseCard title={this.props.name}/>
+                <CollapseCard title={this.props.name}/>
+            </div>
         </div>
     }
 });
