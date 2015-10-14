@@ -1,10 +1,10 @@
-CollapseCardTitle = React.createClass({
+CollapseCardSubtitle = React.createClass({
     render: function () {
         return (
             <div>
-                <h3 className="collapse-card__title">
+                <h4 className="collapse-card__subtitle">
                     {this.props.title}
-                </h3>
+                </h4>
             </div>
         );
     }

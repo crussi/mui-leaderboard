@@ -114,16 +114,24 @@ SidebarApp = React.createClass({
     },
     onChange(input, resolve) {
         // Simulate AJAX request
-        setTimeout(() => {
-            resolve(suggestions.filter((suggestion) =>
-                    suggestion.match(new RegExp('^' + input.replace(/\W\s/g, ''), 'i'))
-            ));
-        }, 25);
+        //setTimeout(() => {
+        //    resolve(suggestions.filter((suggestion) =>
+        //            suggestion.match(new RegExp('^' + input.replace(/\W\s/g, ''), 'i'))
+        //    ));
+        //}, 25);
     },
     onSubmit(input) {
         if (!input) return;
         console.info("Parent onSubmit input: " + input);
+        Meteor.call("/inbox/addNew", input, (err, res) => {
+            console.log('meteor.call inbox addNew');
+            if (err) {
+                console.log("Failed to add new input task.");
+                return;
+            }
 
+            //input.value = "";
+        });
     },
     render() {
         //console.log('sidebarapp render');

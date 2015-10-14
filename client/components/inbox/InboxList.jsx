@@ -7,7 +7,7 @@ const {
     } = mui;
 const styles = {
     list: {
-        marginRight: '60px'
+        marginRight: '120px'
     }
 }
 
@@ -31,7 +31,7 @@ InboxList = React.createClass({
             styles.list;
 
         return <div style={listStyle}>
-            <List>{
+            {
                 this.data.inboxItems.map((item) => {
                     let style = {
                         paddingTop:'10px',
@@ -48,17 +48,25 @@ InboxList = React.createClass({
                     let secondaryText = moment(item.dateCreated).fromNow();
                     //console.log('today: ' + today);
                     //console.log('days: ' + days);
+                    console.log('inboxList item.description: ' + item.description);
                     return [
-                        <ListItem key={ item._id }
+                        //<ListItem key={ item._id }
+                        //          primaryText={ item.description }
+                        //          onClick={ this.selectItem.bind(this, item._id) }
+                        //          leftAvatar={ <Avatar style={avatarStyle}>{days}</Avatar> }
+                        //          secondaryText={ "Entered " + secondaryText }
+                        //          style={style}/>,
+                        //<ListDivider/>
+                        <CollapseCard key={ item._id }
                                   primaryText={ item.description }
-                                  onClick={ this.selectItem.bind(this, item._id) }
-                                  leftAvatar={ <Avatar style={avatarStyle}>{days}</Avatar> }
+                                  //onClick={ this.selectItem.bind(this, item._id) }
+                                  avatar={ <Avatar style={avatarStyle}>{days}</Avatar> }
                                   secondaryText={ "Entered " + secondaryText }
-                                  style={style}/>,
-                        <ListDivider/>
+                                  />,
+                        //<ListDivider/>
                     ]
                 })
-            }</List>
+            }
         </div>
     }
 });

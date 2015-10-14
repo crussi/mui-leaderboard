@@ -20,13 +20,9 @@ CollapseCardBody = React.createClass({
             switch (nextProps.slideDirection.trim()) {
                 case 'up':
                     $el.slideUp('animationDuration: 400');
-                    this.getDOMNode().style.height = '0px';
-                    this.getDOMNode().style.display = 'none';
                     break;
                 case 'down':
                     $el.slideDown('animationDuration: 400');
-                    this.getDOMNode().style.height = '200px';
-                    this.getDOMNode().style.display = 'block';
                     break;
                 default:
 
@@ -36,13 +32,9 @@ CollapseCardBody = React.createClass({
     },
     shouldComponentUpdate(nextProps, nextState){
         let directionChanged = nextState.slideDirection !== this.state.slideDirection;
-        console.log('cardbody shouldComponentUpdate: ' + directionChanged);
         return directionChanged;
     },
     render: function () {
-        //let divStyle = this.state.slideDirection.trim() == 'up' ? {height: 0} : {height: 100};
-        //let bodyStyle = 'collapse-card__wrapper-' + this.state.slideDirection.trim();
-        //console.log('bodyStyle: ' + bodyStyle);
         return (
 
             <div className="collapse-card__body">

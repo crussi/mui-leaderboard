@@ -37,6 +37,7 @@ const styles = {
         bottom: 0,
         overflow: 'auto',
         transition: 'left .3s ease-out',
+        backgroundColor: '#f2f2f2'
     },
     overlay: {
         zIndex: 1,

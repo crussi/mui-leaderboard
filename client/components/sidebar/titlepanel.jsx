@@ -8,6 +8,7 @@ const styles = {
         width: '100%'
     },
     header: {
+        zIndex: '1',
         //backgroundColor: '#03a9f4',
         backgroundColor: '#4285f4',
         //boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
@@ -21,10 +22,11 @@ const styles = {
     },
     content: {
         marginTop: '54px',
-        padding: '16px',
-        backgroundColor: '#f2f2f2',
+        padding: '8px',
+        //backgroundColor: '#f2f2f2',
         height: '100%',
-        width: '100%',
+        width: '100%'
+
         //marginRight: '20px'
     },
 };
