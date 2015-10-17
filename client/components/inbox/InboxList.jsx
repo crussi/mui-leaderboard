@@ -8,6 +8,7 @@ const {
 const styles = {
     list: {
         marginRight: '120px'
+        //marginLeft: '10px'
     }
 }
 

@@ -24,7 +24,7 @@ const styles = {
         WebkitTransition: '-webkit-transform .3s ease-out',
         WebkitTransform: 'translateX(-100%)',
         willChange: 'transform',
-        backgroundColor: 'white',
+        backgroundColor: '#f2f2f2',
         overflowY: 'hidden',
         top: '0',
         postion: 'fixed'
