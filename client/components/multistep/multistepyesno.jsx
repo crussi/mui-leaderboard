@@ -8,22 +8,19 @@ const styles = {
         marginLeft: '55px'
     },
     question: {
-        fontSize: '1rem;',
+        fontSize: '1rem',
         fontWeight: 'bold',
         paddingTop: '20px',
         paddingBottom: '20px',
         marginRight: '10px'
     },
     button: {
-        margin: '10px'
+        margin: '5px'
     }
-
-
 };
 
 MultiStepYesNo = React.createClass({
     handleClick(val){
-        console.log('yesno val: ' + val);
         this.props.callback(val);
     },
     render(){

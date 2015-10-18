@@ -29,7 +29,7 @@ FlowRouter.route('/inbox',{
     action: function() {
         //ReactLayout.render(SidebarApp, {content: <Container name={"inbox"}><InboxList /></Container>});
         ReactLayout.render(SidebarApp, {content() {
-            return <InboxList />;
+            return <InboxList nextstep={nextstep} />;
         }});
     }
 });

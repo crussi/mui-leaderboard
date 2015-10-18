@@ -59,11 +59,12 @@ InboxList = React.createClass({
                         //          style={style}/>,
                         //<ListDivider/>
                         <CollapseCard key={ item._id }
-                                  primaryText={ item.description }
-                                  //onClick={ this.selectItem.bind(this, item._id) }
-                                  avatar={ <Avatar style={avatarStyle}>{days}</Avatar> }
-                                  secondaryText={ "Entered " + secondaryText }
-                                  />,
+                          primaryText={ item.description }
+                          //onClick={ this.selectItem.bind(this, item._id) }
+                          avatar={ <Avatar style={avatarStyle}>{days}</Avatar> }
+                          secondaryText={ "Entered " + secondaryText }
+                          content={<MultiStep nextstep={this.props.nextstep}/>}
+                          />,
                         //<ListDivider/>
                     ]
                 })

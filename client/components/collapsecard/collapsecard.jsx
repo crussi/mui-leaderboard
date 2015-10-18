@@ -25,7 +25,9 @@ CollapseCard = React.createClass({
         return (
             <div className={cardClass}>
                 <CollapseCardHeading {...headingProps} headingClicked={this.headingClicked} />
-                <CollapseCardBody slideDirection={slideDirection}/>
+                <CollapseCardBody slideDirection={slideDirection}>
+                    {this.props.content}
+                </CollapseCardBody>
             </div>
         );
     }

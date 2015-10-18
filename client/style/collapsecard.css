@@ -98,7 +98,9 @@
 }
 
 .collapse-card__body {
-    padding: 1rem;
+    /*padding: 1rem;*/
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
     display: none;
 }
 
